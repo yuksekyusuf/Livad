@@ -11,7 +11,7 @@ import SwiftUI
 struct LivadApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProfileInfoView()
         }
     }
 }
