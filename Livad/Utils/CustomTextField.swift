@@ -12,33 +12,35 @@ struct CustomTextField: View {
     let placeHolder: Text
     let imageName: String
     var body: some View {
-        ZStack(alignment: .leading) {
-            if text.isEmpty {
-                placeHolder
-                    .foregroundColor(Color.init(white: 1, opacity: 0.8))
-                    .padding(.leading, 40)
-            }
-            
-            HStack {
+        VStack(alignment: .leading){
+            HStack{
                 Image(systemName: imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
                     .foregroundColor(.white)
-                
-                TextField("", text: $text)
+                placeHolder
+                    .foregroundColor(.white) + Text(" *").foregroundColor(.red)
             }
+            .padding(.vertical, 5)
+            .padding(.horizontal, 32)
+            ZStack(alignment: .leading) {
+                if text.isEmpty {
+                    placeHolder
+                        .foregroundColor(Color.init(white: 1, opacity: 0.8))
+                        .padding(.leading, 10)
+                }
+                    TextField("", text: $text)
+            }
+            .padding()
+            .background(Color.init(white: 1, opacity: 0.15))
+            .cornerRadius(10)
+            .foregroundColor(.white)
+            .padding(.horizontal, 32)
         }
-        .padding()
-        .background(Color.init(white: 1, opacity: 0.15))
-        .cornerRadius(10)
-        .foregroundColor(.white)
-        .padding(.horizontal, 32)
+        
     }
 }
 
 struct Previews_CustomTextField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField(text: .constant(""), placeHolder: Text("Email"), imageName: "envelope")
+        CustomTextField(text: .constant(""), placeHolder: Text("Email"), imageName: "circle")
     }
 }

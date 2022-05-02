@@ -12,6 +12,8 @@
 		57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */; };
 		57C13178281C4BCE00E3FE1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C13177281C4BCE00E3FE1F /* Assets.xcassets */; };
 		57C1317B281C4BCE00E3FE1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C1317A281C4BCE00E3FE1F /* Preview Assets.xcassets */; };
+		57F174982820300C00F949E6 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F174972820300C00F949E6 /* CustomLabel.swift */; };
+		57F261252820058A00D32A5A /* CheckboxFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F261242820058A00D32A5A /* CheckboxFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		57C13177281C4BCE00E3FE1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C1317A281C4BCE00E3FE1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		57F174972820300C00F949E6 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		57F261242820058A00D32A5A /* CheckboxFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxFieldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +42,8 @@
 			isa = PBXGroup;
 			children = (
 				57B6FD8F281D9DE5006E71B6 /* CustomTextField.swift */,
+				57F261242820058A00D32A5A /* CheckboxFieldView.swift */,
+				57F174972820300C00F949E6 /* CustomLabel.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -148,6 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57F261252820058A00D32A5A /* CheckboxFieldView.swift in Sources */,
+				57F174982820300C00F949E6 /* CustomLabel.swift in Sources */,
 				57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */,
 				57C13174281C4BC700E3FE1F /* LivadApp.swift in Sources */,
 				57B6FD90281D9DE5006E71B6 /* CustomTextField.swift in Sources */,
