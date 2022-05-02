@@ -10,14 +10,17 @@ import SwiftUI
 struct CustomLabel: View {
     let imageName: String
     let placeHolder: Text
-    //    @State var country: Country
+    @State var selectedText: String?
     var body: some View {
         HStack {
-            Text("*").foregroundColor(.red)
             Image(systemName: imageName)
-            placeHolder
-            Text("| ⌵")
-            
+            if let selectedText = selectedText {
+                Text("\(selectedText)")
+            } else {
+                placeHolder
+            }
+            Text("⌵")
+                .offset(y: -4)
         }
         .padding()
         .background(Color.init(white: 1, opacity: 0.15))

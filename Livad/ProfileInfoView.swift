@@ -27,19 +27,20 @@ struct ProfileInfoView: View {
     @State var checkMale: Bool = false
     @State var checkFemale: Bool = false
     @State var checkOther: Bool = false
-    @State var selectedCountry: Country?
-//    = Country(id: "001", name: "Turkey")
+    @State var selectedCountr1: Country?
+    @State var selectedCountr2: Country?
     
+    //    = Country(id: "001", name: "Turkey")
     let countries = Locale.isoRegionCodes.compactMap {
         Country(id: $0, name: Locale.current.localizedString(forRegionCode: $0)!)}.sorted(by: { $0.name > $1.name })
-    
     @State var selectedNumber: Int = 0
     
     @State private var selection = "Red"
     let colors = ["Red", "Green", "Blue", "Black", "Tartan"]
     
     var body: some View {
-        ZStack{
+        
+        ScrollView{
             Color("SignUpBackground")
                 .ignoresSafeArea()
             VStack(alignment: .leading){
@@ -102,51 +103,111 @@ struct ProfileInfoView: View {
                     .padding(.vertical, 10)
                 }
                 
-                //Mark: - Phone
-                
-                HStack(spacing: 14){
-//                    Menu {
-//                        Picker(selection: $selectedCountry, label: EmptyView()) {
-//                            ForEach(countries) {
-//                                Text("\($0.name)")
-//                            }
-//                        }
-//                    } label: {
-//                        CustomLabel(imageName: "envelope", placeHolder: Text("Country"))
-//                        }
+                VStack(alignment: .leading) {
+                    HStack{
+                        Image(systemName: "phone.fill")
+                            .foregroundColor(.white)
+                        Text("Phone").foregroundColor(.white) + Text(" *").foregroundColor(.red)
+                    }
+                    .padding(.horizontal, 32)
+                    .padding(.vertical, 4)
                     
-                    Menu {
-                            Picker(selection: $selectedCountry, label: EmptyView()) {
-                                ForEach(countries) {
-                                    Text("\($0.name)")
+                    HStack{
+                        Menu {
+                            Picker(selection: $selectedCountr1, label: EmptyView()) {
+                                ForEach(countries) { country in
+                                    Text("\(country.id)").tag(Optional(country))
                                 }
                             }
                         } label: {
                             customLabel
                         }
                         
+                        ZStack(alignment: .leading) {
+                            if phone.isEmpty {
+                                Text("Phone")
+                                    .padding(.horizontal, 8)
+                            }
+                            TextField("", text: $phone )
+                                .padding(.vertical, 15)
+                                .padding(.horizontal, 8)
+                        }
+                        .background(Color.init(white: 1, opacity: 0.15))
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
                     }
+                    .padding(.horizontal, 32)
+                    
                     
                 }
+                
+                //Mark: - Country
+                HStack{
+                    Menu {
+                        Picker(selection: $selectedCountr1, label: EmptyView()) {
+                            ForEach(countries) { country in
+                                Text("\(country.name)").tag(Optional(country))
+                            }
+                        }
+                    } label: {
+                        customLabel
+                    }
+                    Spacer()
+                    Menu {
+                        Picker(selection: $selectedCountr2, label: EmptyView()) {
+                            ForEach(countries) { country in
+                                Text("\(country.name)").tag(Optional(country))
+                            }
+                        }
+                    } label: {
+                        customLabel2
+                    }
+                }
+                .padding(.horizontal, 32)
+                .allowsTightening(false)
             }
             
-            .background(Color("SignUpBackground"))
+            
         }
-    
+        .background(Color("SignUpBackground"))
+    }
     var customLabel: some View {
         HStack {
             Image(systemName: "paperplane")
-            Text("\(selectedCountry.name)")
+            Text("*").foregroundColor(.red)
+            if let selectedCountry = selectedCountr1 {
+                Text("\(selectedCountry.name)")
+            } else {
+                Text("Country")
+            }
             Text("⌵")
                 .offset(y: -4)
         }
-        .padding()
+        .padding(15)
         .background(Color.init(white: 1, opacity: 0.15))
         .cornerRadius(10)
         .foregroundColor(.white)
-        .padding(.horizontal, 32)
+    }
+    
+    var customLabel2: some View {
+        HStack {
+            Image(systemName: "building.2")
+            Text("*").foregroundColor(.red)
+            if let selectedCountry = selectedCountr2 {
+                Text("\(selectedCountry.name)")
+            } else {
+                Text("City")
+            }
+            Text("⌵")
+                .offset(y: -4)
+        }
+        .padding(15)
+        .background(Color.init(white: 1, opacity: 0.15))
+        .cornerRadius(10)
+        .foregroundColor(.white)
     }
 }
+
 
 
 struct ContentView_Previews: PreviewProvider {
