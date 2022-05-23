@@ -7,22 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571FF52728218C9E00907188 /* CheckedBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571FF52628218C9E00907188 /* CheckedBoxView.swift */; };
 		57B6FD90281D9DE5006E71B6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6FD8F281D9DE5006E71B6 /* CustomTextField.swift */; };
 		57C13174281C4BC700E3FE1F /* LivadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C13173281C4BC700E3FE1F /* LivadApp.swift */; };
 		57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */; };
 		57C13178281C4BCE00E3FE1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C13177281C4BCE00E3FE1F /* Assets.xcassets */; };
 		57C1317B281C4BCE00E3FE1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C1317A281C4BCE00E3FE1F /* Preview Assets.xcassets */; };
+		57E86B3E283C0EEF00831A5E /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 57E86B3D283C0EEF00831A5E /* Auth0 */; };
+		57E86B40283C0F1200831A5E /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E86B3F283C0F1200831A5E /* Auth0.plist */; };
+		57E86B42283C0FE000831A5E /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E86B41283C0FDF00831A5E /* LoginPageView.swift */; };
 		57F174982820300C00F949E6 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F174972820300C00F949E6 /* CustomLabel.swift */; };
 		57F261252820058A00D32A5A /* CheckboxFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F261242820058A00D32A5A /* CheckboxFieldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		571FF52628218C9E00907188 /* CheckedBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedBoxView.swift; sourceTree = "<group>"; };
 		57B6FD8F281D9DE5006E71B6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		57C13170281C4BC700E3FE1F /* Livad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C13173281C4BC700E3FE1F /* LivadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivadApp.swift; sourceTree = "<group>"; };
 		57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		57C13177281C4BCE00E3FE1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C1317A281C4BCE00E3FE1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		57E86B3B283C0DF100831A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		57E86B3F283C0F1200831A5E /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
+		57E86B41283C0FDF00831A5E /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
 		57F174972820300C00F949E6 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		57F261242820058A00D32A5A /* CheckboxFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxFieldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E86B3E283C0EEF00831A5E /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,9 +76,13 @@
 		57C13172281C4BC700E3FE1F /* Livad */ = {
 			isa = PBXGroup;
 			children = (
+				57E86B3B283C0DF100831A5E /* Info.plist */,
+				57E86B3F283C0F1200831A5E /* Auth0.plist */,
 				57B6FD8E281D9DD3006E71B6 /* Utils */,
-				57C13173281C4BC700E3FE1F /* LivadApp.swift */,
 				57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */,
+				571FF52628218C9E00907188 /* CheckedBoxView.swift */,
+				57C13173281C4BC700E3FE1F /* LivadApp.swift */,
+				57E86B41283C0FDF00831A5E /* LoginPageView.swift */,
 				57C13177281C4BCE00E3FE1F /* Assets.xcassets */,
 				57C13179281C4BCE00E3FE1F /* Preview Content */,
 			);
@@ -100,6 +113,9 @@
 			dependencies = (
 			);
 			name = Livad;
+			packageProductDependencies = (
+				57E86B3D283C0EEF00831A5E /* Auth0 */,
+			);
 			productName = Livad;
 			productReference = 57C13170281C4BC700E3FE1F /* Livad.app */;
 			productType = "com.apple.product-type.application";
@@ -128,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 57C13167281C4BC700E3FE1F;
+			packageReferences = (
+				57E86B3C283C0EEF00831A5E /* XCRemoteSwiftPackageReference "Auth0" */,
+			);
 			productRefGroup = 57C13171281C4BC700E3FE1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57C1317B281C4BCE00E3FE1F /* Preview Assets.xcassets in Resources */,
+				57E86B40283C0F1200831A5E /* Auth0.plist in Resources */,
 				57C13178281C4BCE00E3FE1F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +176,8 @@
 			files = (
 				57F261252820058A00D32A5A /* CheckboxFieldView.swift in Sources */,
 				57F174982820300C00F949E6 /* CustomLabel.swift in Sources */,
+				57E86B42283C0FE000831A5E /* LoginPageView.swift in Sources */,
+				571FF52728218C9E00907188 /* CheckedBoxView.swift in Sources */,
 				57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */,
 				57C13174281C4BC700E3FE1F /* LivadApp.swift in Sources */,
 				57B6FD90281D9DE5006E71B6 /* CustomTextField.swift in Sources */,
@@ -290,6 +312,7 @@
 				DEVELOPMENT_TEAM = 62739J54F9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Livad/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -319,6 +342,7 @@
 				DEVELOPMENT_TEAM = 62739J54F9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Livad/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -359,6 +383,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57E86B3C283C0EEF00831A5E /* XCRemoteSwiftPackageReference "Auth0" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57E86B3D283C0EEF00831A5E /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57E86B3C283C0EEF00831A5E /* XCRemoteSwiftPackageReference "Auth0" */;
+			productName = Auth0;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57C13168281C4BC700E3FE1F /* Project object */;
 }

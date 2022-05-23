@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct CheckboxFieldView : View {
-
-    @State var checkState:Bool = false
+    @State var gender: String
+    @State var states: [String:Bool] = [:]
     var body: some View {
-        Image(systemName: checkState ? "checkmark.square.fill" : "square")
-            .foregroundColor(checkState ? Color(UIColor.systemBlue) : Color.secondary)
+        HStack{
+            Image(systemName: states[gender]! ? "checkmark.circle.fill" : "circle")
+                .foregroundColor(states[gender]! ? Color(UIColor.green) : Color.white)
             .onTapGesture {
-                self.checkState.toggle()
+                self.states.keys.forEach { states[$0] = false }
+                self.states[gender]!.toggle()
             }
+        Text("Male")
+            .foregroundColor(.white)
+        }
     }
 
 }
 
 struct CheckboxFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckboxFieldView()
+        CheckboxFieldView(gender: "male")
     }
 }
