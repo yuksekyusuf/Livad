@@ -12,7 +12,7 @@ struct LivadApp: App {
     var body: some Scene {
         WindowGroup {
 //            ProfileInfoView()
-            LoginPageView()
+            HomePageView()
         }
     }
 }
