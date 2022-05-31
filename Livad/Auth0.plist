@@ -6,5 +6,7 @@
     <string>n1yvwyy84i7I5JfJCE6ryPyolKL7zwKI</string>
     <key>Domain</key>
     <string>login.livad.stream</string>
+<!--    <key>Audience</key>-->
+<!--    <string>https://streamer.api.livad.stream</string>-->
 </dict>
 </plist>

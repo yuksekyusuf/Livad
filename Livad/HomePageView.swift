@@ -65,6 +65,20 @@ struct HomePageView: View {
                             .cornerRadius(15)
                     })
                     
+                    Button(action: {
+                        handleSignOut()
+                    }, label: {
+                        Text("LOG OUT")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(
+                                Capsule().fill(Color("TextBlue"))
+                            )
+                            .cornerRadius(15)
+                    })
+                    
                     //            Button("Log Out") {
                     //                handleLogOut()
                     //            }
@@ -82,6 +96,7 @@ struct HomePageView: View {
     func handleLogin(){
         Auth0
             .webAuth()
+            .audience("https://streamer.api.livad.stream")
             .start { result in
                 switch result {
                 case .success(let credentials):
@@ -92,17 +107,31 @@ struct HomePageView: View {
                 }
             }
     }
+    
+    func handleSignOut() {
+        Auth0
+            .webAuth()
+            .clearSession { result in
+                switch result {
+                case .success:
+                    print("Logged out")
+                case .failure(let error):
+                    print("Failed with: \(error)")
+                }
+            }
+    }
     func postAction(credentials: Credentials) {
-        let url = String(format: "https://streamer.livad.stream/streamers")
+        let url = String(format: "https://streamer.api.livad.stream/streamers")
         guard let serviceUrl = URL(string: url) else { return }
         var request = URLRequest(url: serviceUrl)
         request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        print("TOKEN:" + "Bearer \(credentials.accessToken)")
         request.setValue("Bearer \(credentials.accessToken)",
-            forHTTPHeaderField: "Authentication"
+            forHTTPHeaderField: "Authorization"
         )
-        request.httpBody = try! JSONSerialization.data(withJSONObject: [])
+//        request.httpBody = try! JSONSerialization.data(withJSONObject: [])
     
         let session = URLSession(configuration: URLSessionConfiguration.default)
         session.dataTask(with: request) { (data, response, error) in
@@ -111,7 +140,6 @@ struct HomePageView: View {
             }
             if let data = data {
                 do {
-                    print(data)
                     let gitData = try JSONDecoder().decode(LoginData.self, from: data)
                     print(gitData.currencyID)
                 } catch {

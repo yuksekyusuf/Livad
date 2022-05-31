@@ -8,7 +8,7 @@
 import Foundation
 
 struct LoginData: Codable {
-    let streamerID: String
+        let streamerID: String
         let linkToLogo: String
         let title: String
         let settingsRequired: Bool
