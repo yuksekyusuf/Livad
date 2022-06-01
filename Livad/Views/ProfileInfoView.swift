@@ -17,7 +17,6 @@ enum Gender {
 struct ProfileInfoView: View {
     
     @StateObject var viewModel = ProfileInfoViewModel()
-
     
     @State var otherGender: String = ""
     @State var phone: String = ""
@@ -52,13 +51,7 @@ struct ProfileInfoView: View {
                 
                 //Mark: - Gender
                 VStack(alignment: .leading) {
-                    HStack{
-                        Image(systemName: "personalhotspot.circle")
-                            .foregroundColor(.white)
-                        Text("Gender").foregroundColor(.white) + Text(" *").foregroundColor(.red)
-                    }
-                    .padding(.horizontal, 32)
-                    .padding(.vertical, 4)
+                    CustomHeaderView(imageName: "personalhotspot.circle", text: "Gender")
                     HStack(spacing: 15) {
                         Image(systemName: genderChecked["male"]! ? "checkmark.circle.fill" : "circle")
                             .foregroundColor(genderChecked["male"]! ? Color(UIColor.green) : Color.white)
@@ -91,11 +84,11 @@ struct ProfileInfoView: View {
                                 self.genderChecked["other"]!.toggle()
                             }
                         ZStack(alignment: .leading) {
-                            if otherGender.isEmpty {
+                            if viewModel.setting.genderDetail.isEmpty {
                                 Text("In your own words, what is your gender identity?")
                                     .padding(.horizontal, 8)
                             }
-                            TextField("", text: $otherGender )
+                            TextField("", text: $viewModel.setting.genderDetail )
                                 .padding(.vertical, 18)
                                 .padding(.horizontal, 8)
                         }
@@ -110,13 +103,8 @@ struct ProfileInfoView: View {
                 }
                 
                 VStack(alignment: .leading) {
-                    HStack{
-                        Image(systemName: "phone.fill")
-                            .foregroundColor(.white)
-                        Text("Phone").foregroundColor(.white) + Text(" *").foregroundColor(.red)
-                    }
-                    .padding(.horizontal, 32)
-                    .padding(.vertical, 4)
+                    
+                    CustomHeaderView(imageName: "phone.fill", text: "Phone")
                     
                     HStack{
                         ZStack {
@@ -173,13 +161,7 @@ struct ProfileInfoView: View {
                     
                 }
                 //MARK: - DOB
-                HStack{
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(.white)
-                    Text("Date of Birth").foregroundColor(.white) + Text(" *").foregroundColor(.red)
-                }
-                .padding(.horizontal, 32)
-                .padding(.vertical, 4)
+                CustomHeaderView(imageName: "heart.fill", text: "Date of Birth")
                 
                 HStack(spacing: 18){
                     Menu {

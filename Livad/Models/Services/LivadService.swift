@@ -14,8 +14,8 @@ class LivadService {
     static let shared = LivadService()
     
     func actionSession(with url: String, credentials: Credentials, action actionType: String, for data: Data?) -> URLRequest? {
-        let url = String(format: url)
-        //Fix this forced wrapping!!!
+//        let url = String(format: url)
+//        //Fix this forced wrapping!!!
         let serviceUrl = URL(string: url)!
         var request = URLRequest(url: serviceUrl)
         request.httpMethod = actionType
@@ -23,6 +23,18 @@ class LivadService {
         request.setValue("Bearer \(credentials.accessToken)", forHTTPHeaderField: "Authorization")
         return request
     }
+    
+    func actionSession(with url: String, accessToken: String, action actionType: String, for data: Data?) -> URLRequest? {
+//        let url = String(format: url)
+//        //Fix this forced wrapping!!!
+        let serviceUrl = URL(string: url)!
+        var request = URLRequest(url: serviceUrl)
+        request.httpMethod = actionType
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+    
     
     
     

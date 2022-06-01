@@ -21,7 +21,7 @@ struct LivadApp: App {
     var body: some Scene {
         WindowGroup {
 //            ProfileInfoView()
-            HomePageView()
+            AuthenticationView()
 //                .environmentObject(credentialsController)
         }
     }

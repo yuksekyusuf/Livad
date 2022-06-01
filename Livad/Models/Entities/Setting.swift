@@ -16,7 +16,7 @@ import Foundation
 struct Setting: Codable {
     var firstName, lastName, contactEmail, phone: String
     var discordUsername, gender, broadcastingLanguage: String
-    var genderDetail: String?
+    var genderDetail: String
     let broadcastingLanguageID, country, city, instagramUsername: String
     let twitterUsername, birthDate, broadcastingSoftware: String
     let modSet: Int
