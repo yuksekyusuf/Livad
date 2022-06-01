@@ -6,13 +6,24 @@
 //
 
 import SwiftUI
+import Auth0
+
+//final class CredentialsController: ObservableObject {
+//    init() {
+//    }
+//    @Published var credentialsManager = CredentialsManager(authentication: Auth0.authentication())
+//}
 
 @main
 struct LivadApp: App {
+//    @StateObject var credentialsController = CredentialsController()
+
     var body: some Scene {
         WindowGroup {
 //            ProfileInfoView()
             HomePageView()
+//                .environmentObject(credentialsController)
         }
     }
+        
 }

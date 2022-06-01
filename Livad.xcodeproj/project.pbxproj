@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		571FF52728218C9E00907188 /* CheckedBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571FF52628218C9E00907188 /* CheckedBoxView.swift */; };
 		57472C75284648030064A256 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57472C74284648030064A256 /* Streamer.swift */; };
+		57AC36FD2847BA7500CD67CE /* LivadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC36FC2847BA7500CD67CE /* LivadService.swift */; };
 		57AEE22628465643007156B3 /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AEE22528465643007156B3 /* HomePageViewModel.swift */; };
 		57AEE22828465FD9007156B3 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AEE22728465FD9007156B3 /* LoginData.swift */; };
+		57AEE22A284796E7007156B3 /* ProfileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AEE229284796E7007156B3 /* ProfileInfoViewModel.swift */; };
+		57AEE22C2847970B007156B3 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AEE22B2847970B007156B3 /* Setting.swift */; };
 		57B6FD90281D9DE5006E71B6 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6FD8F281D9DE5006E71B6 /* CustomTextField.swift */; };
 		57C13174281C4BC700E3FE1F /* LivadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C13173281C4BC700E3FE1F /* LivadApp.swift */; };
 		57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */; };
@@ -26,8 +29,11 @@
 /* Begin PBXFileReference section */
 		571FF52628218C9E00907188 /* CheckedBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedBoxView.swift; sourceTree = "<group>"; };
 		57472C74284648030064A256 /* Streamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
+		57AC36FC2847BA7500CD67CE /* LivadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivadService.swift; sourceTree = "<group>"; };
 		57AEE22528465643007156B3 /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
 		57AEE22728465FD9007156B3 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
+		57AEE229284796E7007156B3 /* ProfileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoViewModel.swift; sourceTree = "<group>"; };
+		57AEE22B2847970B007156B3 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		57B6FD8F281D9DE5006E71B6 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		57C13170281C4BC700E3FE1F /* Livad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57C13173281C4BC700E3FE1F /* LivadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivadApp.swift; sourceTree = "<group>"; };
@@ -53,6 +59,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57AEE22D28479ADF007156B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				57AEE22E28479AE6007156B3 /* Entities */,
+				57AC36FC2847BA7500CD67CE /* LivadService.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		57AEE22E28479AE6007156B3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				57472C74284648030064A256 /* Streamer.swift */,
+				57AEE22728465FD9007156B3 /* LoginData.swift */,
+				57AEE22B2847970B007156B3 /* Setting.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		57B6FD8E281D9DD3006E71B6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,18 +107,18 @@
 		57C13172281C4BC700E3FE1F /* Livad */ = {
 			isa = PBXGroup;
 			children = (
+				57AEE22D28479ADF007156B3 /* Models */,
 				57C13173281C4BC700E3FE1F /* LivadApp.swift */,
 				57E86B3B283C0DF100831A5E /* Info.plist */,
 				57E86B3F283C0F1200831A5E /* Auth0.plist */,
 				57B6FD8E281D9DD3006E71B6 /* Utils */,
 				57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */,
+				57AEE229284796E7007156B3 /* ProfileInfoViewModel.swift */,
 				571FF52628218C9E00907188 /* CheckedBoxView.swift */,
 				57E86B41283C0FDF00831A5E /* HomePageView.swift */,
 				57AEE22528465643007156B3 /* HomePageViewModel.swift */,
 				57C13177281C4BCE00E3FE1F /* Assets.xcassets */,
 				57C13179281C4BCE00E3FE1F /* Preview Content */,
-				57472C74284648030064A256 /* Streamer.swift */,
-				57AEE22728465FD9007156B3 /* LoginData.swift */,
 			);
 			path = Livad;
 			sourceTree = "<group>";
@@ -185,6 +210,8 @@
 			files = (
 				57F261252820058A00D32A5A /* CheckboxFieldView.swift in Sources */,
 				57AEE22828465FD9007156B3 /* LoginData.swift in Sources */,
+				57AEE22C2847970B007156B3 /* Setting.swift in Sources */,
+				57AEE22A284796E7007156B3 /* ProfileInfoViewModel.swift in Sources */,
 				57F174982820300C00F949E6 /* CustomLabel.swift in Sources */,
 				57AEE22628465643007156B3 /* HomePageViewModel.swift in Sources */,
 				57E86B42283C0FE000831A5E /* HomePageView.swift in Sources */,
@@ -192,6 +219,7 @@
 				57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */,
 				57C13174281C4BC700E3FE1F /* LivadApp.swift in Sources */,
 				57472C75284648030064A256 /* Streamer.swift in Sources */,
+				57AC36FD2847BA7500CD67CE /* LivadService.swift in Sources */,
 				57B6FD90281D9DE5006E71B6 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

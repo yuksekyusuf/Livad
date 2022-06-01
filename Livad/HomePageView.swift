@@ -9,11 +9,10 @@ import SwiftUI
 import Auth0
 
 struct HomePageView: View {
-    @State private var isRegistered: Bool = false
-    //    @StateObject var viewModel = HomePageViewModel()
+    @State private var isAuthenticated: Bool = false
     var body: some View {
         NavigationView {
-            if isRegistered {
+            if isAuthenticated {
                 ProfileInfoView()
             } else {
                 VStack{
@@ -65,27 +64,25 @@ struct HomePageView: View {
                             .cornerRadius(15)
                     })
                     
-                    Button(action: {
-                        handleSignOut()
-                    }, label: {
-                        Text("LOG OUT")
-                            .font(.headline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(
-                                Capsule().fill(Color("TextBlue"))
-                            )
-                            .cornerRadius(15)
-                    })
+                    //MARK: - LogOut
+                    /*
+                     Button(action: {
+                     handleSignOut()
+                     }, label: {
+                     Text("LOG OUT")
+                     .font(.headline)
+                     .fontWeight(.semibold)
+                     .foregroundColor(.white)
+                     .padding()
+                     .background(
+                     Capsule().fill(Color("TextBlue"))
+                     )
+                     .cornerRadius(15)
+                     })
+                     */
                     
-                    //            Button("Log Out") {
-                    //                handleLogOut()
-                    //            }
-                    //            .foregroundColor(.white)
-                    //                .padding()
-                    //                .background(.blue)
                     Spacer()
+                    
                 }
                 .background(Color("SignUpBackground"))
                 .ignoresSafeArea()
@@ -100,8 +97,8 @@ struct HomePageView: View {
             .start { result in
                 switch result {
                 case .success(let credentials):
-                    print("TOKEN", credentials.accessToken)
                     postAction(credentials: credentials)
+                    isAuthenticated = true
                 case .failure(let error):
                     print("Failed with: \(error)")
                 }
@@ -120,19 +117,10 @@ struct HomePageView: View {
                 }
             }
     }
+    
     func postAction(credentials: Credentials) {
         let url = String(format: "https://streamer.api.livad.stream/streamers")
-        guard let serviceUrl = URL(string: url) else { return }
-        var request = URLRequest(url: serviceUrl)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        print("TOKEN:" + "Bearer \(credentials.accessToken)")
-        request.setValue("Bearer \(credentials.accessToken)",
-            forHTTPHeaderField: "Authorization"
-        )
-//        request.httpBody = try! JSONSerialization.data(withJSONObject: [])
-    
+        guard let request = LivadService.shared.actionSession(with: url, credentials: credentials, action: "POST", for: nil) else { return }
         let session = URLSession(configuration: URLSessionConfiguration.default)
         session.dataTask(with: request) { (data, response, error) in
             if let response = response {
@@ -148,7 +136,7 @@ struct HomePageView: View {
             }
         }.resume()
     }
-
+    
 }
 
 struct LoginPageView_Previews: PreviewProvider {

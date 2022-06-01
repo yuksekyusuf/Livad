@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Auth0
 
 enum Gender {
     case male
@@ -14,9 +15,10 @@ enum Gender {
 }
 
 struct ProfileInfoView: View {
-    @State var firstName: String = ""
-    @State var lastName: String = ""
-    @State var email: String = ""
+    
+    @StateObject var viewModel = ProfileInfoViewModel()
+
+    
     @State var otherGender: String = ""
     @State var phone: String = ""
     @State var dobYear: Int = 0
@@ -40,14 +42,14 @@ struct ProfileInfoView: View {
     let countries = Locale.isoRegionCodes.compactMap {
         Country(id: $0, name: Locale.current.localizedString(forRegionCode: $0)!)}.sorted(by: { $0.name > $1.name })
     var body: some View {
-        
         ScrollView{
             Color("SignUpBackground")
                 .ignoresSafeArea()
             VStack(alignment: .leading){
-                CustomTextField(text: $firstName, placeHolder: Text("First Name"), imageName: "person")
-                CustomTextField(text: $lastName, placeHolder: Text("Last Name"), imageName: "person")
-                CustomTextField(text: $email, placeHolder: Text("E-mail"), imageName: "envelope")
+                CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("First Name"), imageName: "person")
+                CustomTextField(text: $viewModel.setting.lastName, placeHolder: Text("Last Name"), imageName: "person")
+                CustomTextField(text: $viewModel.setting.contactEmail, placeHolder: Text("E-mail"), imageName: "envelope")
+                
                 //Mark: - Gender
                 VStack(alignment: .leading) {
                     HStack{
@@ -380,6 +382,17 @@ struct ProfileInfoView: View {
             }
             return flag
         }
+    
+//    func handleCredentials() {
+//        viewModel.credentialsManager.credentials { result in
+//            switch result{
+//            case .success(let credentials):
+//                accessToken = credentials.accessToken
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//    }
 }
 
 
