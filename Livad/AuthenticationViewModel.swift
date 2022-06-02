@@ -9,25 +9,27 @@ import Foundation
 import Auth0
 
 class AuthenticationViewModel: ObservableObject {
-    
+    let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
     init() {}
     
     @Published var isAuthenticated: Bool = false
     
-    func handleLogin(){
-        Auth0
-            .webAuth()
-            .audience("https://streamer.api.livad.stream")
-            .start { result in
-                switch result {
-                case .success(let credentials):
-                    self.postAction(credentials: credentials)
-                    self.isAuthenticated = true
-                case .failure(let error):
-                    print("Failed with: \(error)")
-                }
-            }
-    }
+//    func handleLogin(){
+//
+//        Auth0
+//            .webAuth()
+//            .audience("https://streamer.api.livad.stream")
+//            .start { result in
+//                switch result {
+//                case .success(let credentials):
+//                    self.postAction(credentials: credentials)
+//                    self.isAuthenticated = true
+//                    self.credentialsManager.store(credentials: credentials)
+//                case .failure(let error):
+//                    print("Failed with: \(error)")
+//                }
+//            }
+//    }
     
     func handleSignOut() {
         Auth0
@@ -42,8 +44,7 @@ class AuthenticationViewModel: ObservableObject {
             }
     }
     
-    
-    private func postAction(credentials: Credentials) {
+    func postAction(credentials: Credentials) {
         let url = "https://streamer.api.livad.stream/streamers"
         guard let request = LivadService.shared.actionSession(with: url, credentials: credentials, action: "POST", for: nil) else { return }
         let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -54,6 +55,9 @@ class AuthenticationViewModel: ObservableObject {
             if let data = data {
                 do {
                     let gitData = try JSONDecoder().decode(LoginData.self, from: data)
+                    DispatchQueue.main.async {
+                        self.isAuthenticated = true
+                    }
                     print(gitData.currencyID)
                 } catch {
                     print("ERROR", error)
@@ -61,6 +65,4 @@ class AuthenticationViewModel: ObservableObject {
             }
         }.resume()
     }
-    
-    
 }

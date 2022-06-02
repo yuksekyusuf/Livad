@@ -8,21 +8,16 @@
 import SwiftUI
 import Auth0
 
-//final class CredentialsController: ObservableObject {
-//    init() {
-//    }
-//    @Published var credentialsManager = CredentialsManager(authentication: Auth0.authentication())
-//}
 
 @main
 struct LivadApp: App {
-//    @StateObject var credentialsController = CredentialsController()
+//    @StateObject var authenticationService = AuthenticationService()
 
     var body: some Scene {
         WindowGroup {
 //            ProfileInfoView()
             AuthenticationView()
-//                .environmentObject(credentialsController)
+//                .environmentObject(authenticationService)
         }
     }
         

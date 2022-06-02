@@ -21,6 +21,8 @@
 		57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */; };
 		57C13178281C4BCE00E3FE1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C13177281C4BCE00E3FE1F /* Assets.xcassets */; };
 		57C1317B281C4BCE00E3FE1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57C1317A281C4BCE00E3FE1F /* Preview Assets.xcassets */; };
+		57D5ED702848E4D300B4D515 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5ED6F2848E4D300B4D515 /* CustomPickerView.swift */; };
+		57D5ED72284965A900B4D515 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5ED71284965A800B4D515 /* AuthenticationService.swift */; };
 		57E86B3E283C0EEF00831A5E /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 57E86B3D283C0EEF00831A5E /* Auth0 */; };
 		57E86B40283C0F1200831A5E /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57E86B3F283C0F1200831A5E /* Auth0.plist */; };
 		57E86B42283C0FE000831A5E /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E86B41283C0FDF00831A5E /* AuthenticationView.swift */; };
@@ -44,6 +46,8 @@
 		57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		57C13177281C4BCE00E3FE1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57C1317A281C4BCE00E3FE1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		57D5ED6F2848E4D300B4D515 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
+		57D5ED71284965A800B4D515 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		57E86B3B283C0DF100831A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		57E86B3F283C0F1200831A5E /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
 		57E86B41283C0FDF00831A5E /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 		57B47D8D28481047003CFA20 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				57B47D8F284810CD003CFA20 /* CustomViews */,
 				57C13175281C4BC700E3FE1F /* ProfileInfoView.swift */,
 				57E86B41283C0FDF00831A5E /* AuthenticationView.swift */,
 			);
@@ -112,11 +117,12 @@
 		57B47D8F284810CD003CFA20 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				574ADD0F2848131700400117 /* CustomHeaderView.swift */,
 				57B6FD8F281D9DE5006E71B6 /* CustomTextField.swift */,
 				57F261242820058A00D32A5A /* CheckboxFieldView.swift */,
 				57F174972820300C00F949E6 /* CustomLabel.swift */,
 				571FF52628218C9E00907188 /* CheckedBoxView.swift */,
-				574ADD0F2848131700400117 /* CustomHeaderView.swift */,
+				57D5ED6F2848E4D300B4D515 /* CustomPickerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				57AC36FC2847BA7500CD67CE /* LivadService.swift */,
+				57D5ED71284965A800B4D515 /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -155,7 +162,6 @@
 		57C13172281C4BC700E3FE1F /* Livad */ = {
 			isa = PBXGroup;
 			children = (
-				57B47D8F284810CD003CFA20 /* CustomViews */,
 				57B47D8E2848104F003CFA20 /* ViewModels */,
 				57B47D8D28481047003CFA20 /* Views */,
 				57AEE22D28479ADF007156B3 /* Models */,
@@ -259,6 +265,7 @@
 				57AC36FF2847C9CA00CD67CE /* AuthenticationViewModel.swift in Sources */,
 				57AEE22C2847970B007156B3 /* Setting.swift in Sources */,
 				57AEE22A284796E7007156B3 /* ProfileInfoViewModel.swift in Sources */,
+				57D5ED702848E4D300B4D515 /* CustomPickerView.swift in Sources */,
 				57F174982820300C00F949E6 /* CustomLabel.swift in Sources */,
 				57E86B42283C0FE000831A5E /* AuthenticationView.swift in Sources */,
 				571FF52728218C9E00907188 /* CheckedBoxView.swift in Sources */,
@@ -266,6 +273,7 @@
 				57C13176281C4BC700E3FE1F /* ProfileInfoView.swift in Sources */,
 				57C13174281C4BC700E3FE1F /* LivadApp.swift in Sources */,
 				57472C75284648030064A256 /* Streamer.swift in Sources */,
+				57D5ED72284965A900B4D515 /* AuthenticationService.swift in Sources */,
 				57AC36FD2847BA7500CD67CE /* LivadService.swift in Sources */,
 				574ADD1328481C6D00400117 /* Countries.swift in Sources */,
 				57B6FD90281D9DE5006E71B6 /* CustomTextField.swift in Sources */,

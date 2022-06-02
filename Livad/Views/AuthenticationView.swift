@@ -10,82 +10,89 @@ import Auth0
 
 struct AuthenticationView: View {
     @StateObject var viewModel = AuthenticationViewModel()
+    @StateObject var authenticationService = AuthenticationService()
     var body: some View {
-        if viewModel.isAuthenticated {
-            ProfileInfoView()
-        } else {
-            VStack{
-                HStack{
-                    Image("LivadLogo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 70, height: 70)
-                        .padding()
-                    Image("LivadHeader")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 35)
-                }
-                .padding(.top, 25)
-                .padding([.leading, .trailing], 50.0)
-                .background(.black)
-                Spacer()
+            if viewModel.isAuthenticated {
+                ProfileInfoView()
+                    .environmentObject(authenticationService)
+                    
+            } else {
                 VStack{
-                    Text("Monetize your ")
-                    Text("live streams with ")
-                    Text("LIVAD's ").bold()
-                    Text("non-intrusive ").bold().foregroundColor(Color("TextBlue"))
-                    Text("video ads.")
-                }
-                .padding()
-                .multilineTextAlignment(.center)
-                .font(.system(size: 42))
-                .foregroundColor(.white)
-                
-                Text("Join our network of streamers and start earning today!")
-                    .foregroundColor(.white)
-                    .font(.system(size: 20))
-                    .multilineTextAlignment(.center)
+                    HStack{
+                        Image("LivadLogo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 70, height: 70)
+                            .padding()
+                        Image("LivadHeader")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 35)
+                    }
+                    .padding(.top, 25)
+                    .padding([.leading, .trailing], 50.0)
+                    .background(.black)
+                    Spacer()
+                    VStack{
+                        Text("Monetize your ")
+                        Text("live streams with ")
+                        Text("LIVAD's ").bold()
+                        Text("non-intrusive ").bold().foregroundColor(Color("TextBlue"))
+                        Text("video ads.")
+                    }
                     .padding()
-                
-                Spacer()
-                Button(action: {
-                    viewModel.handleLogin()
-                }, label: {
-                    Text("GET STARTED")
-                        .font(.headline)
-                        .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 42))
+                    .foregroundColor(.white)
+                    
+                    Text("Join our network of streamers and start earning today!")
                         .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        .multilineTextAlignment(.center)
                         .padding()
-                        .background(
-                            Capsule().fill(Color("TextBlue"))
-                        )
-                        .cornerRadius(15)
-                })
-                
-                //MARK: - LogOut
-                /*
-                 Button(action: {
-                 handleSignOut()
-                 }, label: {
-                 Text("LOG OUT")
-                 .font(.headline)
-                 .fontWeight(.semibold)
-                 .foregroundColor(.white)
-                 .padding()
-                 .background(
-                 Capsule().fill(Color("TextBlue"))
-                 )
-                 .cornerRadius(15)
-                 })
-                 */
-                
-                Spacer()
-                
+                    
+                    Spacer()
+                    Button(action: {
+                        guard let credentials = authenticationService.credentials else { return }
+                        viewModel.postAction(credentials: credentials)
+                    }, label: {
+                        Text("GET STARTED")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(
+                                Capsule().fill(Color("TextBlue"))
+                            )
+                            .cornerRadius(15)
+                    })
+                    
+                    //MARK: - LogOut
+                    /*
+                     Button(action: {
+                     handleSignOut()
+                     }, label: {
+                     Text("LOG OUT")
+                     .font(.headline)
+                     .fontWeight(.semibold)
+                     .foregroundColor(.white)
+                     .padding()
+                     .background(
+                     Capsule().fill(Color("TextBlue"))
+                     )
+                     .cornerRadius(15)
+                     })
+                     */
+                    
+                    Spacer()
+                    
+                }
+                .background(Color("SignUpBackground"))
+                .ignoresSafeArea()
             }
-            .background(Color("SignUpBackground"))
-            .ignoresSafeArea()
-        }
+        
+//        .environmentObject(authenticationService)
+        
     }
 }
 
