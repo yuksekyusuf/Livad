@@ -144,7 +144,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "12"
             endingLineNumber = "12"
-            landmarkName = "AuthenticationService"
+            landmarkName = "AuthService"
             landmarkType = "3">
             <Locations>
                <Location
@@ -236,8 +236,8 @@
             filePath = "Livad/AuthenticationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
             landmarkName = "postAction(credentialsManager:)"
             landmarkType = "7">
          </BreakpointContent>

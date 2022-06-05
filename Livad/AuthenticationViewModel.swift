@@ -10,7 +10,6 @@ import Auth0
 
 class AuthenticationViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
-    @Published var credentials: Credentials? = nil
     
     func postAction(credentialsManager: CredentialsManager) {
         credentialsManager.credentials { result in

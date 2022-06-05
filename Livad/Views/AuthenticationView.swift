@@ -54,6 +54,7 @@ struct AuthenticationView: View {
                     Button(action: {
                         let credentialManager = authService.credentialsManager
                         viewModel.postAction(credentialsManager: credentialManager)
+                        
                     }, label: {
                         Text("GET STARTED")
                             .font(.headline)
