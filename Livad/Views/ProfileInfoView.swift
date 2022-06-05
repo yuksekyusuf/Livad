@@ -8,30 +8,9 @@
 import SwiftUI
 import Auth0
 
-enum Gender {
-    case male
-    case female
-    case other
-}
 
 struct ProfileInfoView: View {
-    @EnvironmentObject var authService: AuthenticationService
-//    func handleCredentials() {
-//        credentialsManager.credentials { result in
-//            switch result {
-//            case .success(let credentials):
-//            print("Obtained credentials: \(credentials)")
-//            case .failure(let error):
-//                print("Failed with: \(error.localizedDescription)")
-//            }
-//        }
-//    }
-    
-
-    func getCountries() {
-        guard let credentials = authService.credentials else { return }
-        viewModel.getCountries(credentials: credentials)
-    }
+    @EnvironmentObject var authService: AuthService
     @StateObject var viewModel = ProfileInfoViewModel()
     @State var genderChecked: [String: Bool] = ["male": false,
                                                 "female": false,
@@ -41,9 +20,9 @@ struct ProfileInfoView: View {
     @State var dobMonth: Int = 0
     @State var dobDay: Int = 0
     @State var city: String = ""
-    
     @State var phoneNumber = ""
     @State var code = ""
+
     
     
     var body: some View {
@@ -123,14 +102,15 @@ struct ProfileInfoView: View {
                         //Country
                         //City
                     }
-                    
-                    
                 }
-                
-                
             }
         }
         .background(Color("SignUpBackground"))
+    }
+    
+    func getCountries() {
+        guard let credentials = authService.credentials else { return }
+        viewModel.getCountries(credentials: credentials)
     }
 }
 

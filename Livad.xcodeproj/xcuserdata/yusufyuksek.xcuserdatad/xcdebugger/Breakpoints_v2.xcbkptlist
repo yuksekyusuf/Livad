@@ -8,14 +8,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "7F14F554-C78E-4DF8-8B7B-B92597BED319"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Livad/Models/Entities/Countries.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "Country"
             landmarkType = "14">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "Livad/ViewModels/ProfileInfoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
             landmarkName = "getCountries(credentials:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "Livad/ViewModels/ProfileInfoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "init()"
             landmarkType = "7">
             <Locations>
@@ -126,8 +126,8 @@
             filePath = "Livad/Views/ProfileInfoView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
             landmarkName = "ProfileInfoView"
             landmarkType = "14">
          </BreakpointContent>
@@ -135,129 +135,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2621ADE7-D530-431D-870D-10418052F16D"
+            uuid = "1A9251E0-0244-497E-8C26-B2FEE682B54E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Livad/Views/ProfileInfoView.swift"
+            filePath = "Livad/Models/Services/AuthenticationService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "ProfileInfoView"
-            landmarkType = "14">
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "AuthenticationService"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "1A9251E0-0244-497E-8C26-B2FEE682B54E - a930738d433084d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Livad.AuthenticationService.__allocating_init() -&gt; Livad.AuthenticationService"
+                  moduleName = "Livad"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yusufyuksek/Desktop/Livad/Livad/Models/Services/AuthenticationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "1A9251E0-0244-497E-8C26-B2FEE682B54E - 9648db61fdff34f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Livad.AuthenticationService.deinit"
+                  moduleName = "Livad"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yusufyuksek/Desktop/Livad/Livad/Models/Services/AuthenticationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1A9251E0-0244-497E-8C26-B2FEE682B54E - 6799a32085b4369b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Livad.AuthenticationService.__deallocating_deinit"
+                  moduleName = "Livad"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yusufyuksek/Desktop/Livad/Livad/Models/Services/AuthenticationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "1A9251E0-0244-497E-8C26-B2FEE682B54E - 500f70dc8a8ca0ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Livad.AuthenticationService.init() -&gt; Livad.AuthenticationService"
+                  moduleName = "Livad"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yusufyuksek/Desktop/Livad/Livad/Models/Services/AuthenticationService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9CC8A56F-74B0-47F3-B041-B0E50A9029E8"
+            uuid = "AFF7B01A-05B7-49FE-8790-DEB873A7272C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Livad/Views/ProfileInfoView.swift"
+            filePath = "Livad/Views/AuthenticationView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "ProfileInfoView"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "AuthenticationView"
             landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B1EF937A-98EF-4E4C-9503-7BDD2A5F728E"
-            shouldBeEnabled = "Yes"
+            uuid = "13EA9289-211C-47A7-83F5-0293B30E4B8F"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Livad/AuthenticationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "AuthenticationViewModel"
-            landmarkType = "3">
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "postAction(credentialsManager:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6D852050-8895-45D8-B543-2BB5F4669DA1"
+            uuid = "7A5F9755-5D51-4E85-8832-B4A6F658097F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Livad/ViewModels/ProfileInfoViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "ProfileInfoViewModel"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "65E659E0-44C7-44A7-A362-4BCB44295B18"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Livad/Views/ProfileInfoView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "ProfileInfoView"
-            landmarkType = "14">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CBB82F1A-8356-4155-B88B-8E1F4EC1BB4B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Livad/Models/Services/AuthenticationService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "handleAuthentication()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D83748AD-6D0E-4EFA-A061-E513E79D170A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Livad/Models/Services/AuthenticationService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "handleAuthentication()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "58CAA9D1-ED6B-458A-B97E-AB3615272980"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Livad/Models/Services/AuthenticationService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "handleAuthentication()"
-            landmarkType = "9">
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getCountries(credentials:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

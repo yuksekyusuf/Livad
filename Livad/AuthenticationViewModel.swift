@@ -9,27 +9,39 @@ import Foundation
 import Auth0
 
 class AuthenticationViewModel: ObservableObject {
-    let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
-    init() {}
-    
     @Published var isAuthenticated: Bool = false
+    @Published var credentials: Credentials? = nil
     
-//    func handleLogin(){
-//
-//        Auth0
-//            .webAuth()
-//            .audience("https://streamer.api.livad.stream")
-//            .start { result in
-//                switch result {
-//                case .success(let credentials):
-//                    self.postAction(credentials: credentials)
-//                    self.isAuthenticated = true
-//                    self.credentialsManager.store(credentials: credentials)
-//                case .failure(let error):
-//                    print("Failed with: \(error)")
-//                }
-//            }
-//    }
+    func postAction(credentialsManager: CredentialsManager) {
+        credentialsManager.credentials { result in
+            switch result {
+            case .success(let result):
+                let url = "https://streamer.api.livad.stream/streamers"
+                guard let request = LivadService.shared.actionSession(with: url, credentials: result, action: "POST", for: nil) else { return }
+                let session = URLSession(configuration: URLSessionConfiguration.default)
+                session.dataTask(with: request) { (data, response, error) in
+                    if let response = response {
+                        print("RESPONSE:", response)
+                    }
+                    if let data = data {
+                        do {
+                            let data = try JSONDecoder().decode(LoginData.self, from: data)
+                            print("HERE DATA", data)
+                            DispatchQueue.main.async {
+                                self.isAuthenticated = true
+                            }
+                        } catch {
+                            print("ERROR", error)
+                        }
+                    }
+                }.resume()
+                
+            case .failure(let error):
+                print("Failed with: \(error)")
+            }
+        }
+        
+    }
     
     func handleSignOut() {
         Auth0
@@ -42,27 +54,5 @@ class AuthenticationViewModel: ObservableObject {
                     print("Failed with: \(error)")
                 }
             }
-    }
-    
-    func postAction(credentials: Credentials) {
-        let url = "https://streamer.api.livad.stream/streamers"
-        guard let request = LivadService.shared.actionSession(with: url, credentials: credentials, action: "POST", for: nil) else { return }
-        let session = URLSession(configuration: URLSessionConfiguration.default)
-        session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print("RESPONSE:", response)
-            }
-            if let data = data {
-                do {
-                    let gitData = try JSONDecoder().decode(LoginData.self, from: data)
-                    DispatchQueue.main.async {
-                        self.isAuthenticated = true
-                    }
-                    print(gitData.currencyID)
-                } catch {
-                    print("ERROR", error)
-                }
-            }
-        }.resume()
     }
 }

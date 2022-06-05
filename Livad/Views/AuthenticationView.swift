@@ -10,12 +10,11 @@ import Auth0
 
 struct AuthenticationView: View {
     @StateObject var viewModel = AuthenticationViewModel()
-    @StateObject var authenticationService = AuthenticationService()
+    @EnvironmentObject var authService: AuthService
     var body: some View {
             if viewModel.isAuthenticated {
                 ProfileInfoView()
-                    .environmentObject(authenticationService)
-                    
+                    .environmentObject(viewModel)
             } else {
                 VStack{
                     HStack{
@@ -53,8 +52,8 @@ struct AuthenticationView: View {
                     
                     Spacer()
                     Button(action: {
-                        guard let credentials = authenticationService.credentials else { return }
-                        viewModel.postAction(credentials: credentials)
+                        let credentialManager = authService.credentialsManager
+                        viewModel.postAction(credentialsManager: credentialManager)
                     }, label: {
                         Text("GET STARTED")
                             .font(.headline)

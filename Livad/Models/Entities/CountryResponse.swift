@@ -7,6 +7,16 @@
 
 import Foundation
 
+struct CountryResponse: Codable {
+    let countries: [String: Country]
+    let countriesArray: [CountriesArray]
+
+    enum CodingKeys: String, CodingKey {
+        case countries
+        case countriesArray = "countries_array"
+    }
+}
+
 struct Country: Codable {
     let id, name: String
     let phoneCode: Int
@@ -23,3 +33,7 @@ struct Country: Codable {
     }
 }
 
+// MARK: - CountriesArray
+struct CountriesArray: Codable {
+    let value, label: String
+}
