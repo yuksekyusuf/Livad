@@ -51,11 +51,13 @@ struct ProfileInfoView: View {
                     
                     HStack{
                         CheckboxFieldView(genderChecked: $genderChecked, genderName: "other")
-                        CustomTextField(text: $viewModel.setting.genderDetail, placeHolder: Text("In your own words, what is your \ngender identity?"))
+                        CustomTextField(text: $viewModel.setting.genderDetail, placeHolder: Text("In your own words, what is your gender identity?"))
+                            .padding(.horizontal, -27.0)
                             .onTapGesture {
                                 self.genderChecked.keys.forEach { genderChecked[$0] = false }
                                 self.genderChecked["other"]!.toggle()
                             }
+                            .dynamicTypeSize(/*@START_MENU_TOKEN@*/.small/*@END_MENU_TOKEN@*/)
                     }
                     .padding(.horizontal, 32)
                     .padding(.vertical, 10)
@@ -64,12 +66,23 @@ struct ProfileInfoView: View {
                 VStack(alignment: .leading) {
                     
                     CustomHeaderView(imageName: "phone.fill", text: "Phone")
-                    HStack{
+                    VStack{
+                        
+                        Picker("Select a paint color", selection: $viewModel.countries) {
+                            ForEach(viewModel.countries, id: \.self) {
+                                Text($0.name)
+                                        }
+                                    }
+                                    .pickerStyle(.menu)
+                                    .background(.white)
+                        
+                        Text("Selected color: \(viewModel.countries.description)")
+                    
                         //Country Code
-                        CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("Code"))
-                            .frame(height: 20)
-                        CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("Phone"))
-                            .frame(width: 300)
+//                        CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("Code"))
+//                            .frame(height: 20)
+//                        CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("Phone"))
+//                            .frame(width: 300)
                         
                     }
                     
@@ -112,6 +125,17 @@ struct ProfileInfoView: View {
         guard let credentials = authService.credentials else { return }
         viewModel.getCountries(credentials: credentials)
     }
+    
+    
+    //MARK: - Helpers
+    
+//    func getCountryCode (_ country : String) -> String
+//        {
+//            if let key = countryDictionary.first(where: { $0.value == country })?.key {
+//                return key
+//            }
+//            return ""
+//        }
 }
 
 struct ContentView_Previews: PreviewProvider {

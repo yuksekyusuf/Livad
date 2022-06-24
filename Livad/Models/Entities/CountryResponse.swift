@@ -17,7 +17,7 @@ struct CountryResponse: Codable {
     }
 }
 
-struct Country: Codable {
+struct Country: Codable, Hashable {
     let id, name: String
     let phoneCode: Int
     let currencyID, continent: String

@@ -68,9 +68,9 @@ struct AuthenticationView: View {
                     })
                     
                     //MARK: - LogOut
-                    
+                    /*
                      Button(action: {
-//                     handleSignOut()
+                     handleSignOut()
                      }, label: {
                      Text("LOG OUT")
                      .font(.headline)
@@ -82,7 +82,7 @@ struct AuthenticationView: View {
                      )
                      .cornerRadius(15)
                      })
-                     
+                     */
                     
                     Spacer()
                     
