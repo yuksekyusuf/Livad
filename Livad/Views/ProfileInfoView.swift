@@ -66,26 +66,11 @@ struct ProfileInfoView: View {
                 VStack(alignment: .leading) {
                     
                     CustomHeaderView(imageName: "phone.fill", text: "Phone")
-                    VStack{
-                        
-                        Picker("Select a paint color", selection: $viewModel.countries) {
-                            ForEach(viewModel.countries, id: \.self) {
-                                Text($0.name)
-                                        }
-                                    }
-                                    .pickerStyle(.menu)
-                                    .background(.white)
-                        
-                        Text("Selected color: \(viewModel.countries.description)")
                     
-                        //Country Code
-//                        CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("Code"))
-//                            .frame(height: 20)
-//                        CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("Phone"))
-//                            .frame(width: 300)
-                        
-                    }
-                    
+                    CustomPickerMenuView(options: self.viewModel.countryPhones, selectedOption: phoneNumber)
+                        .onAppear {
+                            getCountries()
+                        }
                 }
                 //MARK: - DOB
                 

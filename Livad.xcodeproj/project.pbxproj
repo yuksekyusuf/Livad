@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D860D50286BE1CD000F9213 /* CustomPickerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D860D4F286BE1CD000F9213 /* CustomPickerMenuView.swift */; };
 		571FF52728218C9E00907188 /* CheckedBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571FF52628218C9E00907188 /* CheckedBoxView.swift */; };
 		57472C75284648030064A256 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57472C74284648030064A256 /* Streamer.swift */; };
 		574ADD102848131700400117 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574ADD0F2848131700400117 /* CustomHeaderView.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D860D4F286BE1CD000F9213 /* CustomPickerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerMenuView.swift; sourceTree = "<group>"; };
 		571FF52628218C9E00907188 /* CheckedBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedBoxView.swift; sourceTree = "<group>"; };
 		57472C74284648030064A256 /* Streamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
 		574ADD0F2848131700400117 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				57F174972820300C00F949E6 /* CustomLabel.swift */,
 				571FF52628218C9E00907188 /* CheckedBoxView.swift */,
 				57D5ED6F2848E4D300B4D515 /* CustomPickerView.swift */,
+				4D860D4F286BE1CD000F9213 /* CustomPickerMenuView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D860D50286BE1CD000F9213 /* CustomPickerMenuView.swift in Sources */,
 				57F261252820058A00D32A5A /* CheckboxFieldView.swift in Sources */,
 				57AEE22828465FD9007156B3 /* LoginData.swift in Sources */,
 				57AC36FF2847C9CA00CD67CE /* AuthenticationViewModel.swift in Sources */,

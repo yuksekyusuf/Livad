@@ -12,7 +12,7 @@ class ProfileInfoViewModel: ObservableObject {
     @Published var setting = Setting(firstName: "", lastName: "", contactEmail: "", phone: "", discordUsername: "", gender: "", broadcastingLanguage: "", genderDetail: "", broadcastingLanguageID: "", country: "", city: "", instagramUsername: "", twitterUsername: "", birthDate: "", broadcastingSoftware: "", modSet: 0, countryID: "", countryName: "", cityID: 0, cityName: "", phoneCode: 0, setupPreviewConfirmed: "", birthDateDisplay: "", countryDisplay: CountryDisplay(value: "", label: ""), cityDisplay: Display(value: 0, label: ""), phoneCodeDisplay: Display(value: 0, label: ""))
     
     @Published var countries: [Country] = []
-//    @Published var countryDictionary: [String: String]
+    @Published var countryPhones: [String] = []
     
     init() {
     }
@@ -30,8 +30,12 @@ class ProfileInfoViewModel: ObservableObject {
                     let resultCountries = try JSONDecoder().decode(CountryResponse.self, from: data)
                     DispatchQueue.main.async {
                         self.countries.append(contentsOf: resultCountries.countries.values)
-                        print("Country:", self.countries.count)
-                        print("Country:", resultCountries.countries.first)
+                        for country in self.countries {
+                            let phoneCode = "\(country.phoneCode) + \(country.name)"
+                            self.countryPhones.append(phoneCode)
+                        }
+                        print("Country:", resultCountries.countries.values.first)
+                        print("Country:", self.countries)
                     }
                 } catch {
                     print("ERROR", error)
