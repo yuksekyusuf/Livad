@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D860D50286BE1CD000F9213 /* CustomPickerMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D860D4F286BE1CD000F9213 /* CustomPickerMenuView.swift */; };
+		4DA0B98C286D4814008EAEBB /* CityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA0B98B286D4814008EAEBB /* CityResponse.swift */; };
 		571FF52728218C9E00907188 /* CheckedBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571FF52628218C9E00907188 /* CheckedBoxView.swift */; };
 		57472C75284648030064A256 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57472C74284648030064A256 /* Streamer.swift */; };
 		574ADD102848131700400117 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574ADD0F2848131700400117 /* CustomHeaderView.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		4D860D4F286BE1CD000F9213 /* CustomPickerMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerMenuView.swift; sourceTree = "<group>"; };
+		4DA0B98B286D4814008EAEBB /* CityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityResponse.swift; sourceTree = "<group>"; };
 		571FF52628218C9E00907188 /* CheckedBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedBoxView.swift; sourceTree = "<group>"; };
 		57472C74284648030064A256 /* Streamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
 		574ADD0F2848131700400117 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				57AEE22728465FD9007156B3 /* LoginData.swift */,
 				57AEE22B2847970B007156B3 /* Setting.swift */,
 				574ADD1228481C6D00400117 /* CountryResponse.swift */,
+				4DA0B98B286D4814008EAEBB /* CityResponse.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				57AEE22A284796E7007156B3 /* ProfileInfoViewModel.swift in Sources */,
 				57D5ED702848E4D300B4D515 /* CustomPickerView.swift in Sources */,
 				57F174982820300C00F949E6 /* CustomLabel.swift in Sources */,
+				4DA0B98C286D4814008EAEBB /* CityResponse.swift in Sources */,
 				57E86B42283C0FE000831A5E /* AuthenticationView.swift in Sources */,
 				571FF52728218C9E00907188 /* CheckedBoxView.swift in Sources */,
 				574ADD102848131700400117 /* CustomHeaderView.swift in Sources */,

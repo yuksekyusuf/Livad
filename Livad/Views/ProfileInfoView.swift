@@ -20,9 +20,12 @@ struct ProfileInfoView: View {
     @State var dobMonth: Int = 0
     @State var dobDay: Int = 0
     @State var city: String = ""
-    @State var phoneNumber = ""
+    @State var phoneNumber1 = ""
+    @State var phoneNumber2 = ""
     @State var code = ""
-
+    @State var year = ""
+    @State var month = ""
+    @State var day = ""
     
     
     var body: some View {
@@ -66,51 +69,88 @@ struct ProfileInfoView: View {
                 VStack(alignment: .leading) {
                     
                     CustomHeaderView(imageName: "phone.fill", text: "Phone")
+                    HStack {
+                        CustomPickerMenuView(options: self.viewModel.countryPhones, selectedOption: $phoneNumber1)
+                            .padding(.leading, 20)
+                        
+    //
+                        
+                        CustomTextField(text: $phoneNumber2, placeHolder: Text("Number"))
+                            
+                            .padding(.leading, -15)
+                            .padding(.trailing, 5)
+                    }
                     
-                    CustomPickerMenuView(options: self.viewModel.countryPhones, selectedOption: phoneNumber)
-                        .onAppear {
-                            getCountries()
-                        }
                 }
                 //MARK: - DOB
                 
                 VStack(alignment: .leading) {
                     CustomHeaderView(imageName: "heart.fill", text: "Date of Birth")
                     HStack{
-                        //Year
-                        //Month
-                        //Day
+                        VStack{
+                            Text("Year").foregroundColor(.white) + Text(" *").foregroundColor(.red)
+                            CustomPickerMenuView(options: viewModel.getYears(), selectedOption: $year)
+                                .padding(.horizontal)
+                        }
+                        Spacer()
+                        VStack{
+                            Text("Month").foregroundColor(.white) + Text(" *").foregroundColor(.red)
+                            CustomPickerMenuView(options: viewModel.getMonths(), selectedOption: $month)
+                        }
+                        VStack{
+                            Text("Day").foregroundColor(.white) + Text(" *").foregroundColor(.red)
+                            CustomPickerMenuView(options: viewModel.getDays(), selectedOption: $day)
+                                .padding(.horizontal, 15)
+                        }
+                        
                     }
-                    
+                    .padding(.horizontal)
                 }
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        CustomHeaderView(imageName: "paperplane", text: "Country")
-                        
-                        Button {
-                            getCountries()
-                        } label: {
-                            Text("Coutry")
-                                .padding()
-                                .background(.blue)
-                                .foregroundColor(.white)
+                        VStack {
+                            CustomHeaderView(imageName: "paperplane", text: "Country")
+                            CustomPickerMenuView(options: viewModel.countries.map({$0.name}).sorted{$0>$1}, selectedOption: $viewModel.setting.country)
+                                .padding(.horizontal)
+//                                .onChange(of: viewModel.setting.country, perform: { _ in
+//                                    DispatchQueue.main.async {
+//                                        viewModel.setting.countryID = viewModel.countryDictionary[viewModel.setting.country] ?? ""
+//                                    }
+//                                    guard let country_id = Int(viewModel.setting.countryID) else { return }
+//                                    getCities(country_id: country_id)
+//
+//                                })
+                            Text("\(viewModel.setting.country)  \(viewModel.countryDictionary[viewModel.setting.country] ?? "")")
                         }
-
-                        //Country
-                        //City
+                        VStack {
+                            CustomHeaderView(imageName: "building.2", text: "City")
+                            CustomPickerMenuView(options: viewModel.cities.map({ $0.name}), selectedOption: $viewModel.setting.city)
+                                .padding(.horizontal)
+                        }
                     }
                 }
             }
         }
         .background(Color("SignUpBackground"))
+        .onAppear {
+                                   getCountries()
+                               }
     }
+    
+    
+    
+    
     
     func getCountries() {
         guard let credentials = authService.credentials else { return }
         viewModel.getCountries(credentials: credentials)
     }
     
+    func getCities(country_id: Int) {
+        guard let credentials = authService.credentials else { return }
+        viewModel.getCities(credentials: credentials, country_id: country_id)
+    }
     
     //MARK: - Helpers
     

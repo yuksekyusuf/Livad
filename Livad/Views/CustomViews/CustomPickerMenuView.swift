@@ -10,34 +10,45 @@ import SwiftUI
 
 struct CustomPickerMenuView: View {
     var options: [String]
-    @State var selectedOption: String
+    @Binding var selectedOption: String
     var body: some View {
-        Menu {
-                Picker("picker", selection: $selectedOption) {
-                    ForEach(options, id: \.self) { option in
-                        Text("\(option)")
+        ZStack {
+            Menu {
+                    Picker("picker", selection: $selectedOption) {
+                        ForEach(options, id: \.self) { option in
+                            Text("\(option)")
+                        }
                     }
-                }
-                .labelsHidden()
-                .pickerStyle(InlinePickerStyle())
+                    .labelsHidden()
+                    .pickerStyle(InlinePickerStyle())
 
-            } label: {
+                } label: {
 
-                HStack {
-                    Rectangle()
-                        .foregroundColor(Color(.systemBackground))
-                        .frame(height: 40)
-                    Image(systemName: "chevron.down")
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                    HStack {
+                        Rectangle()
+                            .foregroundColor(Color.init(white: 1, opacity: 0.15))
+                            .frame(height: 40)
+                        Image(systemName: "chevron.down")
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                        
+                    }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.black, lineWidth: 1)
+                        
+                    )
+                    .overlay(
+                        Text("\(selectedOption)")
+                            .padding(.leading, 5)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
+                    )
+                    .padding(5)
+                    .background(Color.init(white: 1, opacity: 0.15))
+                    .cornerRadius(10)
+                    .foregroundColor(.black)
                 }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.black, lineWidth: 1)
-                )
-                .overlay(
-                    Text("\(selectedOption)")
-                )
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-            }
+        }
+
     }
 }

@@ -17,16 +17,16 @@ struct Setting: Codable {
     var firstName, lastName, contactEmail, phone: String
     var discordUsername, gender, broadcastingLanguage: String
     var genderDetail: String
-    let broadcastingLanguageID, country, city, instagramUsername: String
-    let twitterUsername, birthDate, broadcastingSoftware: String
-    let modSet: Int
-    let countryID, countryName: String
-    let cityID: Int
-    let cityName: String
-    let phoneCode: Int
-    let setupPreviewConfirmed, birthDateDisplay: String
-    let countryDisplay: CountryDisplay
-    let cityDisplay, phoneCodeDisplay: Display
+    var broadcastingLanguageID, country, city, instagramUsername: String
+    var twitterUsername, birthDate, broadcastingSoftware: String
+    var modSet: Int
+    var countryID, countryName: String
+    var cityID: Int
+    var cityName: String
+    var phoneCode: Int
+    var setupPreviewConfirmed, birthDateDisplay: String
+    var countryDisplay: CountryDisplay
+    var cityDisplay, phoneCodeDisplay: Display
 
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
