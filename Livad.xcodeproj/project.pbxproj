@@ -83,8 +83,8 @@
 		57AEE22E28479AE6007156B3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				57472C74284648030064A256 /* Streamer.swift */,
 				57AEE22728465FD9007156B3 /* LoginData.swift */,
+				57472C74284648030064A256 /* Streamer.swift */,
 				57AEE22B2847970B007156B3 /* Setting.swift */,
 				574ADD1228481C6D00400117 /* CountryResponse.swift */,
 				4DA0B98B286D4814008EAEBB /* CityResponse.swift */,

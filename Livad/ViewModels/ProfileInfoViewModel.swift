@@ -9,12 +9,13 @@ import Foundation
 import Auth0
 
 class ProfileInfoViewModel: ObservableObject {
-    @Published var setting = Setting(firstName: "", lastName: "", contactEmail: "", phone: "", discordUsername: "", gender: "", broadcastingLanguage: "", genderDetail: "", broadcastingLanguageID: "", country: "", city: "", instagramUsername: "", twitterUsername: "", birthDate: "", broadcastingSoftware: "", modSet: 0, countryID: "", countryName: "", cityID: 0, cityName: "", phoneCode: 0, setupPreviewConfirmed: "", birthDateDisplay: "", countryDisplay: CountryDisplay(value: "", label: ""), cityDisplay: Display(value: 0, label: ""), phoneCodeDisplay: Display(value: 0, label: ""))
-    
+    @Published var streamer = Streamer(firstName: "", lastName: "", contactEmail: "", phone: "", discordUsername: "", broadcastingLanguage: "", broadcastingLanguageID: "", gender: "", country: "", instagramUsername: "", twitterUsername: "", city: "", birthDate: "", broadcastingSoftware: "", languagePreference: "", countryID: "", phoneCode: "", genderDetail: "", setupPreviewConfirmed: 0)
     @Published var countries: [Country] = []
     @Published var countryPhones: [String] = []
-    @Published var cities: [City] = []
+    @Published var cityDictionary: [Int: String] = [:]
     @Published var countryDictionary: [String: String] = [:]
+    @Published var phoneDictionary: [String: Int] = [:]
+    @Published var cities: [String] = []
     
     
     init() {
@@ -31,19 +32,21 @@ class ProfileInfoViewModel: ObservableObject {
             if let data = data {
                 do {
                     let resultCountries = try JSONDecoder().decode(CountryResponse.self, from: data)
-                    for country in resultCountries.countriesArray {
-                        self.countryDictionary[country.value] = country.label
-                    }
-                    
                     
                     DispatchQueue.main.async {
                         self.countries.append(contentsOf: resultCountries.countries.values)
                         for country in self.countries.sorted(by: { $0.name > $1.name }) {
                             let phoneCode = "\(country.name) +\(country.phoneCode)  "
                             self.countryPhones.append(phoneCode)
+                            self.phoneDictionary[country.name] = country.phoneCode
                         }
                         
-//                        print("Country:", resultCountries.countries.values.first)
+                        for country in resultCountries.countriesArray {
+                            print("CountryArray:", country)
+                            self.countryDictionary[country.label] = country.value
+                        }
+                        
+                        print("Country Dictionary:", self.countryDictionary)
                         print("CountryIDS:", resultCountries.countriesArray)
                     }
                 } catch {
@@ -52,7 +55,7 @@ class ProfileInfoViewModel: ObservableObject {
             }
         }.resume()
     }
-    func getCities(credentials: Credentials, country_id: Int) {
+    func getCities(credentials: Credentials, country_id: String) {
         
         let url = "https://streamer.api.livad.stream/countries/\(country_id)/cities"
         guard let request = LivadService.shared.actionSession(with: url, credentials: credentials, action: "GET", for: nil) else { return }
@@ -65,7 +68,11 @@ class ProfileInfoViewModel: ObservableObject {
                 do {
                     let resultCities = try JSONDecoder().decode(CityResponse.self, from: data)
                     DispatchQueue.main.async {
-                        self.cities.append(resultCities.cities.id)
+                        for city in resultCities.citiesArray {
+                            self.cityDictionary[city.value] = city.label
+                            self.cities.append(city.label)
+                        }
+                        print("CITY Dictionary",self.cityDictionary)
                     }
                 } catch {
                     print("ERROR: ", error)
@@ -99,8 +106,10 @@ class ProfileInfoViewModel: ObservableObject {
         }
         return days
     }
-}
+    
 
+
+}
 
 //    func handleCredentials(completion: @escaping (Credentials) -> Void) {
 //        credentialsManager.credentials { result in

@@ -9,21 +9,22 @@ import SwiftUI
 
 
 struct CustomPickerMenuView: View {
-    var options: [String]
+    let options: [String]
+//    let countryName: String?
     @Binding var selectedOption: String
+    var handler: ((String) -> Void)?
     var body: some View {
         ZStack {
             Menu {
-                    Picker("picker", selection: $selectedOption) {
+                Picker("picker", selection: $selectedOption) {
                         ForEach(options, id: \.self) { option in
-                            Text("\(option)")
+                            Text("\(option)").tag(option)
                         }
                     }
                     .labelsHidden()
                     .pickerStyle(InlinePickerStyle())
 
                 } label: {
-
                     HStack {
                         Rectangle()
                             .foregroundColor(Color.init(white: 1, opacity: 0.15))
@@ -41,6 +42,7 @@ struct CustomPickerMenuView: View {
                         Text("\(selectedOption)")
                             .padding(.leading, 5)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(.white)
 
                     )
                     .padding(5)

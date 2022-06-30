@@ -12,16 +12,12 @@ import Auth0
 struct ProfileInfoView: View {
     @EnvironmentObject var authService: AuthService
     @StateObject var viewModel = ProfileInfoViewModel()
-    @State var genderChecked: [String: Bool] = ["male": false,
-                                                "female": false,
-                                                "other": false]
+    @State var genderChecked: [String: Bool] = ["Male": false,
+                                                "Female": false,
+                                                "Other": false]
     @State var phone: String = ""
-    @State var dobYear: Int = 0
-    @State var dobMonth: Int = 0
-    @State var dobDay: Int = 0
-    @State var city: String = ""
-    @State var phoneNumber1 = ""
-    @State var phoneNumber2 = ""
+    @State var phoneCode = ""
+    @State var phoneNumber = ""
     @State var code = ""
     @State var year = ""
     @State var month = ""
@@ -33,57 +29,67 @@ struct ProfileInfoView: View {
             Color("SignUpBackground")
                 .ignoresSafeArea()
             VStack(alignment: .leading){
+                //MARK: - Streamer Info
                 CustomHeaderView(imageName: "person", text: "First Name")
-                CustomTextField(text: $viewModel.setting.firstName, placeHolder: Text("First Name"))
+                CustomTextField(text: $viewModel.streamer.firstName, placeHolder: Text("First Name"))
                 CustomHeaderView(imageName: "person", text: "Last Name")
-                CustomTextField(text: $viewModel.setting.lastName, placeHolder: Text("Last Name"))
+                CustomTextField(text: $viewModel.streamer.lastName, placeHolder: Text("Last Name"))
                 CustomHeaderView(imageName: "envelope", text: "E-mail")
-                CustomTextField(text: $viewModel.setting.contactEmail, placeHolder: Text("E-mail"))
+                CustomTextField(text: $viewModel.streamer.contactEmail, placeHolder: Text("E-mail"))
+                    .textCase(.lowercase)
                 
-                //Mark: - Gender
+                //MARK: - Gender
                 VStack(alignment: .leading) {
                     CustomHeaderView(imageName: "personalhotspot.circle", text: "Gender")
                     HStack(spacing: 15) {
-                        CheckboxFieldView(genderChecked: $genderChecked, genderName: "male")
+                        boxBuilder(gender: "Male")
+                            .onTapGesture {
+                                genderToggle(gender: "Male")
+                            }
                         Spacer()
-                        CheckboxFieldView(genderChecked: $genderChecked, genderName: "female")
+                        boxBuilder(gender: "Female")
+                            .onTapGesture {
+                                genderToggle(gender: "Female")
+                            }
                         Spacer()
                     }
                     .padding(.vertical, 4)
                     .padding(.horizontal, 32)
-                    
                     HStack{
-                        CheckboxFieldView(genderChecked: $genderChecked, genderName: "other")
-                        CustomTextField(text: $viewModel.setting.genderDetail, placeHolder: Text("In your own words, what is your gender identity?"))
+                        boxBuilder(gender: "Other")
+                            .onTapGesture {
+                                genderToggle(gender: "Other")
+                            }
+                        CustomTextField(text: $viewModel.streamer.genderDetail, placeHolder: Text("In your own words, what is your gender identity?"))
                             .padding(.horizontal, -27.0)
                             .onTapGesture {
-                                self.genderChecked.keys.forEach { genderChecked[$0] = false }
-                                self.genderChecked["other"]!.toggle()
+                                genderToggle(gender: "Other")
                             }
                             .dynamicTypeSize(/*@START_MENU_TOKEN@*/.small/*@END_MENU_TOKEN@*/)
                     }
                     .padding(.horizontal, 32)
                     .padding(.vertical, 10)
                 }
-                
+                //MARK: - Phone
                 VStack(alignment: .leading) {
-                    
                     CustomHeaderView(imageName: "phone.fill", text: "Phone")
                     HStack {
-                        CustomPickerMenuView(options: self.viewModel.countryPhones, selectedOption: $phoneNumber1)
-                            .padding(.leading, 20)
-                        
-    //
-                        
-                        CustomTextField(text: $phoneNumber2, placeHolder: Text("Number"))
-                            
-                            .padding(.leading, -15)
-                            .padding(.trailing, 5)
+                        CustomPickerMenuView(options: self.viewModel.phoneDictionary.map({"+\($0.value) \($0.key)"}).sorted(by: >), selectedOption: $phoneCode)
+                            .padding(.horizontal, 27)
+                            .padding(.trailing, 40)
+                            .onChange(of: phoneCode) { newValue in
+                                let array = phoneCode.components(separatedBy: " ")
+                                phoneCode = array[0]
+                                viewModel.streamer.phone = phoneCode + phoneNumber
+                                viewModel.streamer.phoneCode = phoneCode
+                            }
+                        CustomTextField(text: $phoneNumber, placeHolder: Text("Number"))
+                            .padding(.leading, -65)
+//                            .padding(.trailing, 5)
+                            .onChange(of: phoneNumber) { _ in viewModel.streamer.phone = phoneCode + phoneNumber }
                     }
-                    
                 }
                 //MARK: - DOB
-                
                 VStack(alignment: .leading) {
                     CustomHeaderView(imageName: "heart.fill", text: "Date of Birth")
                     HStack{
@@ -106,54 +112,73 @@ struct ProfileInfoView: View {
                     }
                     .padding(.horizontal)
                 }
-                
+                //MARK: - Country
                 VStack(alignment: .leading) {
                     HStack {
                         VStack {
                             CustomHeaderView(imageName: "paperplane", text: "Country")
-                            CustomPickerMenuView(options: viewModel.countries.map({$0.name}).sorted{$0>$1}, selectedOption: $viewModel.setting.country)
-                                .padding(.horizontal)
-//                                .onChange(of: viewModel.setting.country, perform: { _ in
-//                                    DispatchQueue.main.async {
-//                                        viewModel.setting.countryID = viewModel.countryDictionary[viewModel.setting.country] ?? ""
-//                                    }
-//                                    guard let country_id = Int(viewModel.setting.countryID) else { return }
-//                                    getCities(country_id: country_id)
-//
-//                                })
-                            Text("\(viewModel.setting.country)  \(viewModel.countryDictionary[viewModel.setting.country] ?? "")")
+                            CustomPickerMenuView(options: viewModel.countries.map({$0.name}).sorted{$0>$1},
+                                                 selectedOption: $viewModel.streamer.country)
+                            .padding(.horizontal, 25)
+                            .onChange(of: viewModel.streamer.country, perform: { _ in
+                                viewModel.streamer.countryID = viewModel.countryDictionary[viewModel.streamer.country] ?? ""
+                                print("Country:", viewModel.streamer.country)
+                                print("CountryID:", viewModel.streamer.countryID)
+                            getCities(country_id: viewModel.streamer.countryID)
+                            })
                         }
                         VStack {
                             CustomHeaderView(imageName: "building.2", text: "City")
-                            CustomPickerMenuView(options: viewModel.cities.map({ $0.name}), selectedOption: $viewModel.setting.city)
-                                .padding(.horizontal)
+                            CustomPickerMenuView(options: viewModel.cities, selectedOption: $viewModel.streamer.city)
+                                .padding(.horizontal, 25)
+
                         }
                     }
                 }
+                .padding(.vertical)
             }
         }
         .background(Color("SignUpBackground"))
-        .onAppear {
-                                   getCountries()
-                               }
+        .onAppear { getCountries() }
     }
-    
-    
-    
-    
+        
     
     func getCountries() {
         guard let credentials = authService.credentials else { return }
         viewModel.getCountries(credentials: credentials)
     }
     
-    func getCities(country_id: Int) {
+    func getCities(country_id: String) {
         guard let credentials = authService.credentials else { return }
         viewModel.getCities(credentials: credentials, country_id: country_id)
     }
     
-    //MARK: - Helpers
+    func genderToggle(gender: String) {
+        self.genderChecked.keys.forEach { genderChecked[$0] = false }
+        self.genderChecked[gender]!.toggle()
+        viewModel.streamer.gender = gender
+    }
     
+    @ViewBuilder func boxBuilder(gender: String) -> some View {
+            HStack {
+                Image(systemName: genderChecked[gender]! ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(genderChecked[gender]! ? Color(UIColor.green) : Color.white)
+                Text(gender.capitalized)
+                    .foregroundColor(.white)
+            }
+    }
+    
+    
+}
+
+
+
+
+
+
+
+//MARK: - Helpers
+
 //    func getCountryCode (_ country : String) -> String
 //        {
 //            if let key = countryDictionary.first(where: { $0.value == country })?.key {
@@ -161,8 +186,8 @@ struct ProfileInfoView: View {
 //            }
 //            return ""
 //        }
-}
-
+//}
+//}
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileInfoView()
@@ -171,3 +196,13 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
+extension Binding {
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        return Binding(
+            get: { self.wrappedValue },
+            set: { selection in
+                self.wrappedValue = selection
+                handler(selection)
+            })
+    }
+}

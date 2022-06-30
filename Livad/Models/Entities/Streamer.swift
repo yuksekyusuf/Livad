@@ -9,12 +9,12 @@ import Foundation
 import JWTDecode
 
 struct Streamer: Codable {
-    let firstName, lastName, contactEmail, phone: String
-    let discordUsername, broadcastingLanguage, broadcastingLanguageID, gender: String
-    let country, instagramUsername, twitterUsername, city: String
-    let birthDate, broadcastingSoftware, languagePreference, countryID: String
-    let phoneCode, genderDetail: String
-    let setupPreviewConfirmed: Int
+    var firstName, lastName, contactEmail, phone: String
+    var discordUsername, broadcastingLanguage, broadcastingLanguageID, gender: String
+    var country, instagramUsername, twitterUsername, city: String
+    var birthDate, broadcastingSoftware, languagePreference, countryID: String
+    var phoneCode, genderDetail: String
+    var setupPreviewConfirmed: Int
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
