@@ -10,9 +10,7 @@ import SwiftUI
 
 struct CustomPickerMenuView: View {
     let options: [String]
-//    let countryName: String?
     @Binding var selectedOption: String
-    var handler: ((String) -> Void)?
     var body: some View {
         ZStack {
             Menu {
@@ -28,26 +26,27 @@ struct CustomPickerMenuView: View {
                     HStack {
                         Rectangle()
                             .foregroundColor(Color.init(white: 1, opacity: 0.15))
-                            .frame(height: 40)
+                            .frame(height: 50)
+                            .cornerRadius(10)
                         Image(systemName: "chevron.down")
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
+                            .foregroundColor(.white)
                         
                     }
                     .overlay(
-                        RoundedRectangle(cornerRadius: 5)
+                        RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.black, lineWidth: 1)
                         
                     )
                     .overlay(
                         Text("\(selectedOption)")
-                            .padding(.leading, 5)
+                            .padding(.leading, 10)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .foregroundColor(.white)
 
                     )
                     .padding(5)
-                    .background(Color.init(white: 1, opacity: 0.15))
-                    .cornerRadius(10)
+                    .cornerRadius(12)
                     .foregroundColor(.black)
                 }
         }

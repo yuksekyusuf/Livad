@@ -10,8 +10,9 @@ import Auth0
 import SwiftUI
 
 class AuthService: ObservableObject {
-    let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
     @Published var credentials: Credentials? = nil
+    
+    let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
     init() {
         handleAuthentication()
     }

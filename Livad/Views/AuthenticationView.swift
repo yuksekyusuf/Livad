@@ -12,9 +12,9 @@ struct AuthenticationView: View {
     @StateObject var viewModel = AuthenticationViewModel()
     @EnvironmentObject var authService: AuthService
     var body: some View {
+        ZStack {
             if viewModel.isAuthenticated {
-                ProfileInfoView()
-                    .environmentObject(viewModel)
+                SignUpTabView()
             } else {
                 VStack{
                     HStack{
@@ -87,11 +87,10 @@ struct AuthenticationView: View {
                     Spacer()
                     
                 }
-                .background(Color("SignUpBackground"))
                 .ignoresSafeArea()
+                .background(Color("SignUpBackground"))
             }
-        
-//        .environmentObject(authenticationService)
+        }
         
     }
 }
@@ -99,5 +98,6 @@ struct AuthenticationView: View {
 struct LoginPageView_Previews: PreviewProvider {
     static var previews: some View {
         AuthenticationView()
+            .preferredColorScheme(.dark)
     }
 }

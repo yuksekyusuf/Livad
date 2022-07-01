@@ -15,7 +15,6 @@ struct CustomTextField: View {
             if text.isEmpty {
                 placeHolder
                     .foregroundColor(Color.init(white: 1, opacity: 0.8))
-//                    .padding(.leading, 10)
             }
             TextField("", text: $text)
         }
@@ -28,8 +27,8 @@ struct CustomTextField: View {
     
 }
 
-struct Previews_CustomTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomTextField(text: .constant(""), placeHolder: Text("Email"))
-    }
-}
+//struct Previews_CustomTextField_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CustomTextField(text: .constant(""), placeHolder: Text("Email"))
+//    }
+//}

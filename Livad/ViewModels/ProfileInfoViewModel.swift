@@ -91,12 +91,7 @@ class ProfileInfoViewModel: ObservableObject {
     }
     
     func getMonths() -> [String] {
-        let Months = ["January","Febrary","March","April","May","June","July","August","September","October","November","December"]
-        var monthsInPickerView: [String]!
-        let calendar = Calendar.current
-        let month = calendar.dateComponents([.month], from: Date()).month!
-        monthsInPickerView = Array(Months.dropFirst(month - 1))
-        return monthsInPickerView
+        return ["January", "Febrary", "March", "April","May","June","July","August","September","October","November","December"]
     }
     
     func getDays() -> [String] {
@@ -107,8 +102,53 @@ class ProfileInfoViewModel: ObservableObject {
         return days
     }
     
-
-
+    
+    // There is a bug here. You need to re-configure this functionality.!
+    
+    func putStreamer(credentials: Credentials) {
+        let url = "https://streamer.api.livad.stream/streamers"
+        guard let data = try? JSONEncoder().encode(streamer) else {
+            print("Error: Trying to convert model to JSON data")
+            return
+        }
+        
+        guard let request = LivadService.shared.actionSession(with: url, credentials: credentials, action: "PUT", for: data) else { return }
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let response = response {
+                print("RESPONSE: ", response)
+            }
+            guard error == nil else {
+                print("Error: error calling PUT")
+                print(error!)
+                return
+            }
+            guard let data = data else {
+                print("Error: Did not receive data")
+                return
+            }
+            do {
+                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    print("Error: Cannot convert data to JSON object")
+                    return
+                }
+                guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                    print("Error: Cannot convert JSON object to Pretty JSON data")
+                    return
+                }
+                guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                    print("Error: Could print JSON in String")
+                    return
+                }
+                
+                print(prettyPrintedJson)
+            } catch {
+                print("Error: Trying to convert JSON data to string")
+                return
+            }
+        }.resume()
+    }
+    
 }
 
 //    func handleCredentials(completion: @escaping (Credentials) -> Void) {

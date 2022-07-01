@@ -19,6 +19,9 @@ class LivadService {
         request.httpMethod = actionType
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(credentials.accessToken)", forHTTPHeaderField: "Authorization")
+        if let data = data {
+            request.httpBody = data
+        }
         return request
     }
     
