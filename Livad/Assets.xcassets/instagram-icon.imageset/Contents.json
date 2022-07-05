@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "instagram-logo-white-logo-instagram-putih-975168.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "instagram-logo-white-logo-instagram-putih-975168@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "instagram-logo-white-logo-instagram-putih-975168@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

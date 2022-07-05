@@ -11,6 +11,7 @@ import Auth0
 
 struct ProfileInfoView: View {
     @EnvironmentObject var authService: AuthService
+    @StateObject var signUp: SignUpTabViewModel
     @StateObject var viewModel = ProfileInfoViewModel()
     @State var genderChecked: [String: Bool] = ["Male": false,
                                                 "Female": false,
@@ -27,17 +28,17 @@ struct ProfileInfoView: View {
             ScrollView{
                 VStack(alignment: .leading){
                     //MARK: - Streamer Info
-                    CustomHeaderView(imageName: "person", text: "First Name")
-                    CustomTextField(text: $viewModel.streamer.firstName, placeHolder: Text("First Name"))
-                    CustomHeaderView(imageName: "person", text: "Last Name")
-                    CustomTextField(text: $viewModel.streamer.lastName, placeHolder: Text("Last Name"))
-                    CustomHeaderView(imageName: "envelope", text: "E-mail")
-                    CustomTextField(text: $viewModel.streamer.contactEmail, placeHolder: Text("E-mail"))
+                    CustomHeaderView(imageName: "person", customImage: false, text: "First Name", required: true)
+                    CustomTextField(text: $signUp.streamer.firstName, placeHolder: Text("First Name"))
+                    CustomHeaderView(imageName: "person", customImage: false, text: "Last Name", required: true)
+                    CustomTextField(text: $signUp.streamer.lastName, placeHolder: Text("Last Name"))
+                    CustomHeaderView(imageName: "envelope", customImage: false, text: "E-mail", required: true)
+                    CustomTextField(text: $signUp.streamer.contactEmail, placeHolder: Text("E-mail"))
                         .textCase(.lowercase)
                     
                     //MARK: - Gender
                     VStack(alignment: .leading) {
-                        CustomHeaderView(imageName: "personalhotspot.circle", text: "Gender")
+                        CustomHeaderView(imageName: "personalhotspot.circle", customImage: false, text: "Gender", required: true)
                         HStack(spacing: 15) {
                             boxBuilder(gender: "Male")
                                 .onTapGesture {
@@ -57,7 +58,7 @@ struct ProfileInfoView: View {
                                 .onTapGesture {
                                     genderToggle(gender: "Other")
                                 }
-                            CustomTextField(text: $viewModel.streamer.genderDetail, placeHolder: Text("In your own words, \nwhat is your gender identity?"))
+                            CustomTextField(text: $signUp.streamer.genderDetail, placeHolder: Text("In your own words, \nwhat is your gender identity?"))
                                 .padding(.horizontal, -27.0)
                                 .onTapGesture {
                                     genderToggle(gender: "Other")
@@ -69,7 +70,7 @@ struct ProfileInfoView: View {
                     }
                     //MARK: - Phone
                     VStack(alignment: .leading) {
-                        CustomHeaderView(imageName: "phone.fill", text: "Phone")
+                        CustomHeaderView(imageName: "phone.fill", customImage: false, text: "Phone", required: true)
                         HStack {
                             CustomPickerMenuView(options: self.viewModel.phoneDictionary.map({"+\($0.value) \($0.key)"}).sorted(by: >), selectedOption: $phoneCode)
                                 .padding(.horizontal, 27)
@@ -77,19 +78,19 @@ struct ProfileInfoView: View {
                                 .onChange(of: phoneCode) { newValue in
                                     let array = phoneCode.components(separatedBy: " ")
                                     phoneCode = array[0]
-                                    viewModel.streamer.phone = phoneCode + phoneNumber
-                                    viewModel.streamer.phoneCode = phoneCode
+                                    signUp.streamer.phone = phoneCode + phoneNumber
+                                    signUp.streamer.phoneCode = phoneCode
                                 }
                             Spacer()
                             CustomTextField(text: $phoneNumber, placeHolder: Text("Number"))
                                 .padding(.leading, -65)
     //                            .padding(.trailing, 5)
-                                .onChange(of: phoneNumber) { _ in viewModel.streamer.phone = phoneCode + phoneNumber }
+                                .onChange(of: phoneNumber) { _ in signUp.streamer.phone = phoneCode + phoneNumber }
                         }
                     }
                     //MARK: - DOB
                     VStack(alignment: .leading) {
-                        CustomHeaderView(imageName: "heart.fill", text: "Date of Birth")
+                        CustomHeaderView(imageName: "heart.fill", customImage: false, text: "Date of Birth", required: true)
                         HStack{
                             VStack{
                                 Text("Year").foregroundColor(.white) + Text(" *").foregroundColor(.red)
@@ -122,20 +123,19 @@ struct ProfileInfoView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             VStack {
-                                CustomHeaderView(imageName: "paperplane", text: "Country")
+                                CustomHeaderView(imageName: "paperplane", customImage: false, text: "Country", required: true)
                                 CustomPickerMenuView(options: viewModel.countries.map({$0.name}).sorted{$0>$1},
-                                                     selectedOption: $viewModel.streamer.country)
+                                                     selectedOption: $signUp.streamer.country)
                                 .padding(.horizontal, 25)
-                                .onChange(of: viewModel.streamer.country, perform: { _ in
-                                    viewModel.streamer.countryID = viewModel.countryDictionary[viewModel.streamer.country] ?? ""
-                                    print("Country:", viewModel.streamer.country)
-                                    print("CountryID:", viewModel.streamer.countryID)
-                                getCities(country_id: viewModel.streamer.countryID)
+                                .onChange(of: signUp.streamer.country, perform: { _ in
+                                    signUp.streamer.countryID = viewModel.countryDictionary[signUp.streamer.country] ?? ""
+                                getCities(country_id: signUp.streamer.countryID)
+                                    print("Steamer updated:", signUp.streamer)
                                 })
                             }
                             VStack {
-                                CustomHeaderView(imageName: "building.2", text: "City")
-                                CustomPickerMenuView(options: viewModel.cities, selectedOption: $viewModel.streamer.city)
+                                CustomHeaderView(imageName: "building.2", customImage: false, text: "City", required: true)
+                                CustomPickerMenuView(options: viewModel.cities, selectedOption: $signUp.streamer.city)
                                     .padding(.horizontal, 25)
 
                             }
@@ -166,7 +166,7 @@ struct ProfileInfoView: View {
     func genderToggle(gender: String) {
         self.genderChecked.keys.forEach { genderChecked[$0] = false }
         self.genderChecked[gender]!.toggle()
-        viewModel.streamer.gender = gender
+        signUp.streamer.gender = gender
     }
     
     @ViewBuilder func boxBuilder(gender: String) -> some View {
@@ -179,14 +179,14 @@ struct ProfileInfoView: View {
     }
     
     func createBirthday() {
-        viewModel.streamer.birthDate = "\(year)-\(month)-\(day)"
+        signUp.streamer.birthDate = "\(year)-\(month)-\(day)"
     }
     
-    func putStreamer() {
-        guard let credentials = authService.credentials else { return }
-        viewModel.putStreamer(credentials: credentials)
-
-    }
+//    func putStreamer() {
+//        guard let credentials = authService.credentials else { return }
+//        viewModel.putStreamer(credentials: credentials)
+//
+//    }
     
 }
 
@@ -198,7 +198,7 @@ struct ProfileInfoView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileInfoView()
+        ProfileInfoView(signUp: SignUpTabViewModel())
     }
 }
 

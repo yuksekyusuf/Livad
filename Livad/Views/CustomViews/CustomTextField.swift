@@ -24,7 +24,6 @@ struct CustomTextField: View {
         .foregroundColor(.white)
         .padding(.horizontal, 32)
     }
-    
 }
 
 //struct Previews_CustomTextField_Previews: PreviewProvider {
