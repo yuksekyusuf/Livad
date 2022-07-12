@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct LoginData: Codable {
-        let streamerID: String
+struct LoginData: Codable, Identifiable {
+        let id: String
         let linkToLogo: String
         let title: String
         let settingsRequired: Bool
@@ -18,7 +18,7 @@ struct LoginData: Codable {
         let signupCompleted: Int
 
         enum CodingKeys: String, CodingKey {
-            case streamerID = "streamer_id"
+            case id = "streamer_id"
             case linkToLogo = "link_to_logo"
             case title
             case settingsRequired = "settings_required"

@@ -15,4 +15,11 @@ struct Interests: Codable {
 struct Interest: Codable {
     let id: Int
     let name, image: String
+    var isSelected: Bool = false
+    
+    enum CodingKeys: CodingKey {
+           case name
+           case id
+           case image
+        }
 }

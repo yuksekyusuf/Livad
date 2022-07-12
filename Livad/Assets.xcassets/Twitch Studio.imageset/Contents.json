@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "512px-Twitch_Glitch_Logo_White.svg.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "512px-Twitch_Glitch_Logo_White.svg@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "512px-Twitch_Glitch_Logo_White.svg@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

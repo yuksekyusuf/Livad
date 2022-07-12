@@ -47,9 +47,3 @@ struct CustomHeaderView: View {
         .padding(.vertical, 4)
     }
 }
-//
-//struct CustomHeaderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CustomHeaderView()
-//    }
-//}

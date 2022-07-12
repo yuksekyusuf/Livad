@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D14B16F28776499007D823E /* CustomImageFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14B16E28776499007D823E /* CustomImageFrame.swift */; };
+		4D162339287E1958009CCB06 /* MainDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D162338287E1958009CCB06 /* MainDashboard.swift */; };
 		4D21D8F8286FA81F00DA04E1 /* SignUpTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21D8F7286FA81F00DA04E1 /* SignUpTabView.swift */; };
 		4D21D8FA286FA82E00DA04E1 /* SocialMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21D8F9286FA82E00DA04E1 /* SocialMediaView.swift */; };
 		4D21D8FC286FA86200DA04E1 /* StreamSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21D8FB286FA86200DA04E1 /* StreamSettingsView.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D14B16E28776499007D823E /* CustomImageFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageFrame.swift; sourceTree = "<group>"; };
+		4D162338287E1958009CCB06 /* MainDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDashboard.swift; sourceTree = "<group>"; };
 		4D21D8F7286FA81F00DA04E1 /* SignUpTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTabView.swift; sourceTree = "<group>"; };
 		4D21D8F9286FA82E00DA04E1 /* SocialMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaView.swift; sourceTree = "<group>"; };
 		4D21D8FB286FA86200DA04E1 /* StreamSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSettingsView.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				57B47D8F284810CD003CFA20 /* CustomViews */,
 				57E86B41283C0FDF00831A5E /* AuthenticationView.swift */,
 				4D21D8F7286FA81F00DA04E1 /* SignUpTabView.swift */,
+				4D162338287E1958009CCB06 /* MainDashboard.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,9 +152,9 @@
 		57B47D8E2848104F003CFA20 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4D87CB522874BECD007794E0 /* SignUpTabViewModel.swift */,
 				57AEE229284796E7007156B3 /* ProfileInfoViewModel.swift */,
 				57AC36FE2847C9CA00CD67CE /* AuthenticationViewModel.swift */,
-				4D87CB522874BECD007794E0 /* SignUpTabViewModel.swift */,
 				4D87CB612874E39F007794E0 /* StreamSettingsViewModel.swift */,
 				4D87CB632874E927007794E0 /* InterestsViewModel.swift */,
 			);
@@ -163,6 +168,7 @@
 				57B6FD8F281D9DE5006E71B6 /* CustomTextField.swift */,
 				4D860D4F286BE1CD000F9213 /* CustomPickerMenuView.swift */,
 				4D87CB5B2874D340007794E0 /* CustomButtonView.swift */,
+				4D14B16E28776499007D823E /* CustomImageFrame.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 				57AC36FF2847C9CA00CD67CE /* AuthenticationViewModel.swift in Sources */,
 				57AEE22C2847970B007156B3 /* Setting.swift in Sources */,
 				57AEE22A284796E7007156B3 /* ProfileInfoViewModel.swift in Sources */,
+				4D162339287E1958009CCB06 /* MainDashboard.swift in Sources */,
 				4DA0B98C286D4814008EAEBB /* CityResponse.swift in Sources */,
 				4D21D8F8286FA81F00DA04E1 /* SignUpTabView.swift in Sources */,
 				57E86B42283C0FE000831A5E /* AuthenticationView.swift in Sources */,
@@ -328,6 +335,7 @@
 				4D87CB5E2874DF85007794E0 /* InterestResponse.swift in Sources */,
 				4D87CB602874DFB4007794E0 /* LanguageResponse.swift in Sources */,
 				574ADD1328481C6D00400117 /* CountryResponse.swift in Sources */,
+				4D14B16F28776499007D823E /* CustomImageFrame.swift in Sources */,
 				57B6FD90281D9DE5006E71B6 /* CustomTextField.swift in Sources */,
 				4D21D902286FBD2000DA04E1 /* Ext+Binding.swift in Sources */,
 				4D87CB622874E39F007794E0 /* StreamSettingsViewModel.swift in Sources */,

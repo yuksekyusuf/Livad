@@ -9,11 +9,12 @@ import Foundation
 
 
 
-struct Language: Codable {
+class Language: Codable {
     let id, name, nativeName: String
     let minBudget, minCPVBid, minCPCBid: Int
     let currencyID, flagURL: String
     let bussinessAvailable: Int
+    var isSelected: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -25,4 +26,5 @@ struct Language: Codable {
         case flagURL = "flag_url"
         case bussinessAvailable = "bussiness_available"
     }
+    
 }

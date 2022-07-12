@@ -9,13 +9,24 @@ import SwiftUI
 import Auth0
 
 struct AuthenticationView: View {
+//    @EnvironmentObject var authService: AuthService
+    
+    
+    
+    @StateObject var authService = AuthService()
     @StateObject var viewModel = AuthenticationViewModel()
-    @EnvironmentObject var authService: AuthService
+
+
     var body: some View {
-        ZStack {
-            if viewModel.isAuthenticated {
-                SignUpTabView()
-            } else {
+        
+        if viewModel.isAuthenticated && viewModel.loginData?.signupCompleted == 0 {
+            MainDashboard()
+                .environmentObject(authService)
+        } else if viewModel.isAuthenticated && viewModel.loginData?.signupCompleted == 1 {
+            SignUpTabView()
+                .environmentObject(authService)
+        } else {
+            ZStack {
                 VStack{
                     HStack{
                         Image("LivadLogo")
@@ -52,8 +63,7 @@ struct AuthenticationView: View {
                     
                     Spacer()
                     Button(action: {
-                        let credentialManager = authService.credentialsManager
-                        viewModel.postAction(credentialsManager: credentialManager)
+                        viewModel.handleButton(authService: authService)
                         
                     }, label: {
                         Text("GET STARTED")
@@ -66,6 +76,7 @@ struct AuthenticationView: View {
                             )
                             .cornerRadius(15)
                     })
+
                     
                     //MARK: - LogOut
                     /*
@@ -85,14 +96,16 @@ struct AuthenticationView: View {
                      */
                     
                     Spacer()
-                    
                 }
                 .ignoresSafeArea()
                 .background(Color("SignUpBackground"))
             }
         }
-        
     }
+    
+//    func authenticationTapped() {
+//        authService.handleAuthentication()
+//    }
 }
 
 struct LoginPageView_Previews: PreviewProvider {

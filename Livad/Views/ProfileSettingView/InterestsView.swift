@@ -13,27 +13,47 @@ import Auth0
 struct InterestsView: View {
     @EnvironmentObject var authService: AuthService
     @StateObject var viewModel = InterestsViewModel()
-    let languageColumns = [
+    @StateObject var signUp: SignUpTabViewModel
+    @State private var selected: Bool = false
+    let columns = [
         GridItem(.flexible(), spacing: 0, alignment: nil),
         GridItem(.flexible(), spacing: 0, alignment: nil)
     ]
     
     
     var body: some View {
-        ZStack {
-            VStack{
-                CustomHeaderView(imageName: "person", customImage: false, text: "Interests (Pick Between 3-5)", required: true)
-                LazyVGrid(columns: languageColumns) {
-                    ForEach(viewModel.interests, id: \.id) { item in
-                        CustomButtonView(placeHolder: item.name, imageName: item.image, downloadedImage: true)
+        ScrollView {
+            ZStack {
+                VStack{
+                    CustomHeaderView(imageName: "heart.fill", customImage: false, text: "Interests (Pick Between 3-5)", required: true)
+                    LazyVGrid(columns: columns) {
+                        ForEach(viewModel.interests.indices, id: \.self) { i in
+                            VStack{
+                                CustomImageFrame(url: viewModel.interests[i].image, placeHolder: viewModel.interests[i].name, isSelected: viewModel.interests[i].isSelected)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            viewModel.interests[i].isSelected.toggle()
+                                        }
+                                    }
+                                Text(viewModel.interests[i].name)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .frame(maxHeight: .infinity, alignment: .bottom)
+                            }
+                        }
                     }
+                    .padding(.vertical)
                 }
-                .padding(.vertical)
             }
+            .ignoresSafeArea()
+            
         }
-        .ignoresSafeArea()
         .background(Color("SignUpBackground"))
-        .onAppear(perform: getInterests)
+//        .onAppear{
+//            if viewModel.interests.isEmpty {
+//                self.getInterests()
+//            }
+//        }
     }
     
     func getInterests() {
@@ -45,6 +65,6 @@ struct InterestsView: View {
 
 struct InterestsView_Previews: PreviewProvider {
     static var previews: some View {
-        InterestsView().preferredColorScheme(.dark)
+        InterestsView(signUp: SignUpTabViewModel()).preferredColorScheme(.dark)
     }
 }

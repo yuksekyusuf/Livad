@@ -25,9 +25,3 @@ struct CustomTextField: View {
         .padding(.horizontal, 32)
     }
 }
-
-//struct Previews_CustomTextField_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CustomTextField(text: .constant(""), placeHolder: Text("Email"))
-//    }
-//}

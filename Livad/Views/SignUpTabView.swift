@@ -19,7 +19,7 @@ struct SignUpTabView: View {
                 .tag(1)
             StreamSettingsView(signUp: viewModel)
                 .tag(2)
-            InterestsView()
+            InterestsView(signUp: viewModel)
                 .tag(3)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))

@@ -15,36 +15,59 @@ struct StreamSettingsView: View {
     @StateObject var viewModel = StreamSettingsViewModel()
     @EnvironmentObject var authService: AuthService
     
-    
-    let languageColumns = [
+
+    let columns = [
         GridItem(.flexible(), spacing: 0, alignment: nil),
         GridItem(.flexible(), spacing: 0, alignment: nil)
     ]
     var body: some View {
         ScrollView {
             VStack{
-                CustomHeaderView(imageName: "person", customImage: false, text: "Broadcasting Software", required: true)
-                LazyVGrid(columns: languageColumns) {
-                    ForEach(viewModel.softwares, id: \.self) { item in
-                        CustomButtonView(placeHolder: item, imageName: "twitter-icon", downloadedImage: false)
+                CustomHeaderView(imageName: "desktopcomputer", customImage: false, text: "Broadcasting Software", required: true)
+                
+                LazyVGrid(columns: columns) {
+                    
+                    ForEach(viewModel.softwares, id: \.name) { software in
+                        CustomButtonView(placeHolder: software.name, imageName: software.name, downloadedImage: false, isSelected: software.isSelected)
+                            .onTapGesture {
+                                withAnimation {
+                                    self.viewModel.selectSoftware(software)
+                                    self.signUp.streamer.broadcastingSoftware = viewModel.softwareName(name: software.name)
+                                }
+                                
+                            }
                     }
+    
                 }
                 .padding(.vertical)
             }
             Spacer()
             VStack {
-                CustomHeaderView(imageName: "person", customImage: false, text: "Broadcasting Language", required: true)
-//                LazyVGrid(columns: languageColumns) {
-//                    ForEach(viewModel.newLanguages, id: \.self.id) { lang in
-//                        CustomButtonView(placeHolder: lang.name, imageName: "twitter-icon")
-//                    }
-//                }
-//                .padding(.vertical)
+                CustomHeaderView(imageName: "character.book.closed", customImage: false, text: "Broadcasting Language", required: true)
+    
+                LazyVGrid(columns: columns) {
+                    ForEach(viewModel.newLanguages, id: \.id) { language in
+                        CustomButtonView(placeHolder: language.name, imageName: language.flagURL, downloadedImage: true, isSelected: language.isSelected)
+                            .onTapGesture {
+                                withAnimation {
+                                    self.viewModel.selectLanguage(language)
+                                    self.signUp.streamer.languagePreference = language.id
+                                }
+                            }
+                    }
+                    
+                }
+                .padding(.vertical)
+                
             }
             .padding()
         }
         .background(Color("SignUpBackground"))
-        .onAppear(perform: getLanguages)
+//        .onAppear{
+//            if viewModel.newLanguages.isEmpty {
+//                getLanguages()
+//            }
+//        }
         }
     
     func getLanguages() {

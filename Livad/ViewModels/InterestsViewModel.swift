@@ -12,9 +12,7 @@ class InterestsViewModel: ObservableObject {
     
     @Published var interests: [Interest] = []
     
-    init() {
-        
-    }
+    init() {}
     
     func getInterests(credentials: Credentials) {
         let url = "https://streamer.api.livad.stream/interests"
@@ -27,8 +25,6 @@ class InterestsViewModel: ObservableObject {
             if let data = data {
                 do {
                     let data = try JSONDecoder().decode(Interests.self, from: data)
-                    print("DATA interests:", data)
-
                     DispatchQueue.main.async {
                         self.interests.append(contentsOf: data.data)
                     }

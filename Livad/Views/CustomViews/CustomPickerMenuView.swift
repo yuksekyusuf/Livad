@@ -21,7 +21,6 @@ struct CustomPickerMenuView: View {
                     }
                     .labelsHidden()
                     .pickerStyle(InlinePickerStyle())
-
                 } label: {
                     HStack {
                         Rectangle()
@@ -31,19 +30,16 @@ struct CustomPickerMenuView: View {
                         Image(systemName: "chevron.down")
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
                             .foregroundColor(.white)
-                        
                     }
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(Color.black, lineWidth: 1)
-                        
                     )
                     .overlay(
                         Text("\(selectedOption)")
                             .padding(.leading, 10)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .foregroundColor(.white)
-
                     )
                     .padding(5)
                     .cornerRadius(12)

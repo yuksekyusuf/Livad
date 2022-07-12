@@ -148,7 +148,11 @@ struct ProfileInfoView: View {
             
         }
         .background(Color("SignUpBackground"))
-//        .onAppear(perform: getCountries)
+        .onAppear{
+            if viewModel.countries.isEmpty {
+                self.getCountries()
+            }
+        }
 //        .onDisappear(perform: putStreamer)
     }
         

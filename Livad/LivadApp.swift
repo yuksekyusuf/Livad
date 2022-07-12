@@ -11,11 +11,11 @@ import Auth0
 
 @main
 struct LivadApp: App {
-    @StateObject var authenticationService = AuthService()
+//    @StateObject var authenticationService = AuthService()
     var body: some Scene {
         WindowGroup {
             AuthenticationView()
-                .environmentObject(authenticationService)
+//                .environmentObject(authenticationService)
         }
     }
         

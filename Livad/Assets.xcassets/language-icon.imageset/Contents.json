@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "512px-Font_Awesome_5_solid_language.svg.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "512px-Font_Awesome_5_solid_language.svg@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "512px-Font_Awesome_5_solid_language.svg@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

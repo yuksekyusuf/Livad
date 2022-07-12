@@ -14,10 +14,10 @@ class AuthService: ObservableObject {
     
     let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
     init() {
-        handleAuthentication()
+//        handleAuthentication()
     }
     
-    func handleAuthentication() {
+    func handleAuthentication(completion: @escaping () -> Void) {
         Auth0
             .webAuth()
             .scope("openid profile offline_access")
@@ -28,6 +28,7 @@ class AuthService: ObservableObject {
                     DispatchQueue.main.async {
                         self.credentialsManager.store(credentials: credential)
                         self.credentials = credential
+                        completion()
                     }
                 case .failure(let error):
                     print("Failed with: \(error)")
