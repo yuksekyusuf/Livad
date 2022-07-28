@@ -46,8 +46,8 @@ struct StreamSettingsView: View {
                 CustomHeaderView(imageName: "character.book.closed", customImage: false, text: "Broadcasting Language", required: true)
     
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.newLanguages, id: \.id) { language in
-                        CustomButtonView(placeHolder: language.name, imageName: language.flagURL, downloadedImage: true, isSelected: language.isSelected)
+                    ForEach(viewModel.languages, id: \.id) { language in
+                        CustomButtonView(placeHolder: language.nativeName, imageName: language.flagURL, downloadedImage: true, isSelected: language.isSelected)
                             .onTapGesture {
                                 withAnimation {
                                     self.viewModel.selectLanguage(language)
@@ -63,11 +63,11 @@ struct StreamSettingsView: View {
             .padding()
         }
         .background(Color("SignUpBackground"))
-//        .onAppear{
-//            if viewModel.newLanguages.isEmpty {
-//                getLanguages()
-//            }
-//        }
+        .onAppear{
+            if viewModel.languages.isEmpty {
+                getLanguages()
+            }
+        }
         }
     
     func getLanguages() {

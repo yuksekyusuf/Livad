@@ -30,7 +30,7 @@ struct SocialMediaView: View {
             }
             Spacer()
             VStack(alignment: .leading) {
-                CustomHeaderView(imageName: "twitter-icon", customImage: true, text: "Twitter", required: false)
+                CustomHeaderView(imageName: "twitter-icon", customImage: true, text: "TikTok", required: false)
                 CustomTextField(text: $signUp.streamer.instagramUsername, placeHolder: Text("Username"))
             }
         }

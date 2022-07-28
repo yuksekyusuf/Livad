@@ -17,10 +17,6 @@ class ProfileInfoViewModel: ObservableObject {
     @Published var phoneDictionary: [String: Int] = [:]
     @Published var cities: [String] = []
     
-    
-    init() {
-    }
-    
     func getCountries(credentials: Credentials) {
         let url = "https://streamer.api.livad.stream/countries"
         guard let request = LivadService.shared.actionSession(with: url, credentials: credentials, action: "GET", for: nil) else { return }

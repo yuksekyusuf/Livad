@@ -17,8 +17,16 @@ struct CustomButtonView: View {
         HStack(spacing:0) {
             if let imageName = imageName {
                 if downloadedImage {
-                    AsyncImage(url: URL(string: imageName))
-                        .frame(width: 20, height: 20)
+                    AsyncImage(url: URL(string: imageName)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20, alignment: .leading)
+                            .foregroundColor(.white)
+                        
+                    } placeholder: {
+                        ProgressView()
+                    }
                 } else {
                     Image(imageName)
                         .resizable()

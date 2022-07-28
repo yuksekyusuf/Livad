@@ -10,19 +10,6 @@ import Auth0
 import Collections
 
 class StreamSettingsViewModel: ObservableObject {
-    let languages : OrderedDictionary = ["中国人": "zh",
-                     "Deutsch": "de",
-                     "English": "en",
-                     "Español": "es",
-                     "Français": "fr",
-                     "Italiano": "it",
-                     "日本": "ja",
-                     "한국인": "ko",
-                     "Nederlands": "nl",
-                     "Português": "pt",
-                     "Pусский": "rus",
-                     "Türkçe": "tr"
-    ]
     
     let softwares: [SoftwareModel] = [
         SoftwareModel("OBS"),
@@ -30,12 +17,7 @@ class StreamSettingsViewModel: ObservableObject {
         SoftwareModel("Twitch Studio"),
         SoftwareModel("Other")
     ]
-    
-    
-    @Published var newLanguages: [Language] = []
-    init() {
-        
-    }
+    @Published var languages: [Language] = []
     
     func getLanguages(credentials: Credentials) {
         let url = "https://streamer.api.livad.stream/languages"
@@ -48,9 +30,12 @@ class StreamSettingsViewModel: ObservableObject {
             if let data = data {
                 print("DATA", data)
                 do {
-                    let jsonData = try JSONDecoder().decode([Language].self, from: data)
-                    print(jsonData)
-                    self.newLanguages = jsonData
+                    let jsonData = try JSONDecoder().decode(LanguageResponse.self, from: data)
+                    DispatchQueue.main.async {
+                        self.languages.append(contentsOf: jsonData.languages)
+                        print("Languages: ", self.languages[0].flagURL)
+                    }
+                    
                 } catch {
                     print("language ERROR", error)
                 }
@@ -66,7 +51,7 @@ class StreamSettingsViewModel: ObservableObject {
     }
     
     func selectLanguage(_ language: Language) {
-        newLanguages.indices.forEach { newLanguages[$0].isSelected = false }
+        languages.indices.forEach { languages[$0].isSelected = false }
         language.isSelected = true
         objectWillChange.send()
     }

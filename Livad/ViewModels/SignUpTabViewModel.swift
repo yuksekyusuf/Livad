@@ -11,15 +11,6 @@ class SignUpTabViewModel: ObservableObject {
     
     @Published var streamer = Streamer(firstName: "", lastName: "", contactEmail: "", phone: "", discordUsername: "", broadcastingLanguage: "", broadcastingLanguageID: "", gender: "", country: "", instagramUsername: "", twitterUsername: "", city: "", birthDate: "", broadcastingSoftware: "", languagePreference: "", countryID: "", phoneCode: "", genderDetail: "", setupPreviewConfirmed: 0)
     
-    @Published var isProfileInfoValidated: Bool = false
-    @Published var isSocialMediaValidated: Bool = false
-    @Published var isStreamSettingsValidated: Bool = false
-    @Published var isInterestsValidated: Bool = false
-    
-    
-    init() {
-    }
-    
     //MARK: - Profile Info Validation Functions
     
     func isFirstNameValid() -> Bool {
@@ -48,7 +39,7 @@ class SignUpTabViewModel: ObservableObject {
         }
     }
     
-    func isPhoneValid() -> Bool {
+    func isPhoneNumberValid() -> Bool {
         // criteria in regex. See http://regexlib.com
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", "^(1?(-?\\d{3})-?)?(\\d{3})(-?\\d{4})$")
         return phoneTest.evaluate(with: streamer.phone)
@@ -97,6 +88,34 @@ class SignUpTabViewModel: ObservableObject {
         }
     }
     
+    var isProfileInfoValidated: Bool {
+        if !isFirstNameValid() ||
+            !isLastNameValid() ||
+            !isEmailValid() ||
+            !isGenderValid() ||
+            !isPhoneNumberValid() ||
+            !isDOBValid() ||
+            !isCountryValid() ||
+            !isCityValid() { return false
+        }
+        print("isProfileInfoValidated")
+        return true
+    }
+    
+    
+    var isSocialMediaValidated: Bool {
+        return isDiscordValid()
+    }
+    
+    var isStreamSettingsValidated: Bool {
+        if !isSoftwareValid()
+            || !isLanguageValid()
+        { return false }
+        return true
+    }
+    
+    var isInterestsValidated: Bool { return true }
+    
     var isSignUpComplete: Bool {
         if !isProfileInfoValidated ||
             !isSocialMediaValidated ||
@@ -106,5 +125,4 @@ class SignUpTabViewModel: ObservableObject {
         }
         return true
     }
-    
 }

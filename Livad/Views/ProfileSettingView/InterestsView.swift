@@ -46,14 +46,32 @@ struct InterestsView: View {
                 }
             }
             .ignoresSafeArea()
+
+            
+            Button(action: {
+//                viewModel.handleButton(authService: authService)
+                
+            }, label: {
+                Text("SUBMIT")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(
+                        Capsule().fill(Color("TextBlue"))
+                    )
+                    .cornerRadius(15)
+            }).opacity(signUp.isSignUpComplete ? 1: 0.6)
+                .disabled(!signUp.isSignUpComplete)
+           
             
         }
         .background(Color("SignUpBackground"))
-//        .onAppear{
-//            if viewModel.interests.isEmpty {
-//                self.getInterests()
-//            }
-//        }
+        .onAppear{
+            if viewModel.interests.isEmpty {
+                self.getInterests()
+            }
+        }
     }
     
     func getInterests() {
