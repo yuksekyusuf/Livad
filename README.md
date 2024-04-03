@@ -1,7 +1,7 @@
 # Livad
 Livad is a startup that specializes in creating monetization tools for live streaming on Twitch. During my work as a iOS developer,
--Designed the architectural framework
--Developed the initial phases of the iOS application for the streamers' platform.
+- Designed the architectural framework
+- Developed the initial phases of the iOS application for the streamers' platform.
 ## Tech/Frameworks used
 - Swift
 - SwiftUI
